@@ -1,0 +1,130 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+body{
+    width: 100%;
+    background-color:#fff;
+}
+a {
+    text-decoration: none;
+    cursor: pointer;
+}
+img {
+    vertical-align: middle;
+    border: 0;
+}
+div {
+    display: block;
+}
+.top,.main{
+    background-color:rgb(21, 135, 201);
+}
+.top a{
+    color: black;
+}
+.top span {
+    display: inline-block;
+}
+.top-box{
+    width: 980px;
+    margin: auto;
+}
+.top-right{
+    float: right;
+    line-height: 45px;
+    vertical-align: middle;
+}
+.top-right img{
+    vertical-align: middle;
+}
+.top-value{
+    padding-top: 20px;
+    padding-bottom: 20px;
+}
+.main-box{
+    width: 980px;
+    margin: auto;
+}
+.main_top{
+    display: block;
+    text-align: center;
+}
+.main input{
+    width: 400px;
+    height: 50px;
+    padding-left: 16px;
+    font-size: 16px;
+    border: 1px solid black;
+}
+.search{
+}
+.main-search{
+    text-align: center;
+    margin-top: 25px;
+}
+.main{
+    padding-top: 70px;
+    padding-bottom: 105px;
+}
+.search-position{
+	display: inline-block;
+}
+
+/*灏鹃儴鏍峰紡寮�濮�*/
+.bg{
+    text-align:center;
+    background-color: white;
+}
+.item1 div {
+    padding: 15px 0 0 70px;
+}
+.item2 .p1,  .item3 .p1 {
+    color: #d2d2d2;
+    font-size: 16px;
+    padding: 50px 0 10px 0;
+    border-bottom: #737373 solid 1px;
+    width: 250px;
+}
+.item2 .p2, .item3 .p2 {
+    font-size: 14px;
+    padding-top: 20px;
+    color: #737373;
+    line-height: 16px;
+}
+.item2 {
+    width: 285px;
+}
+.item {
+    float: left;
+}
+.bg1 *{
+    box-sizing: border-box;
+}
+.item1 {
+    width: 205px;
+}
+.item3 {
+    width: 285px;
+}
+.item4 {
+    width: 205px;
+    float: right;
+    text-align: center;
+    font-size: 12px;
+    color: #737373;
+}
+.item1 img {
+    margin-top: 50px;
+}
+.wrap {
+    width: 980px;
+    margin: 0px auto 20px;
+    display: inline-block;
+    text-align: left;
+}
+.item4 img {
+    margin: 50px auto 10px auto;
+    display: block;
+}
+/*灏鹃儴鏍峰紡缁撴潫*/

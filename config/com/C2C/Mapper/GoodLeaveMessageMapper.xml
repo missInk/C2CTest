@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.C2C.Mapper.GoodLeaveMessageMapper">
+
+<select id="getGoodLeaveMessageByGoodId" resultMap="goodLeaveMessage">
+	SELECT * FROM c2cdemo.good_leave_message where goodId = #{goodId}
+</select>
+
+<resultMap type="com.C2C.Entity.GoodLeaveMessage" id="goodLeaveMessage">
+	<id property="idgoodLeaveMessage" column="idgoodLeaveMessage"/>
+	<result property="goodId" column="goodId"/>
+	<result property="leaveUserId" column="leaveUserId"/>
+	<result property="message" column="message"/>
+	<association property="leaveUser" select="com.C2C.Mapper.UserMapper.getUserByIdUser" column="leaveUserId"></association>
+	<association property="replys" select="com.C2C.Mapper.ProductMessageReplyMapper.getProductMessageReplyByMessageId" column="idgoodLeaveMessage"></association>
+</resultMap>
+
+</mapper>

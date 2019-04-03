@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.C2C.Mapper.UserMapper">
+
+<select id="getUserNameByIduser" resultType="String">
+	SELECT user.userName FROM c2cdemo.user where user.idUser = #{idUser}
+</select>
+
+<select id="getUserByIdUser" resultType="com.C2C.Entity.User">
+	SELECT user.idUser, user.userName, user.headPortrait FROM c2cdemo.user where idUser = #{idUser}
+</select>
+
+</mapper>

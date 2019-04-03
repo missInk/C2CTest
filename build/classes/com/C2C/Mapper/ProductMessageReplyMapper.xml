@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.C2C.Mapper.ProductMessageReplyMapper">
+
+<select id="getProductMessageReplyByMessageId" resultMap="productMessageReply">
+	SELECT * FROM c2cdemo.product_message_reply where messageId = #{messageId}
+</select>
+
+<resultMap type="com.C2C.Entity.ProductMessageReply" id="productMessageReply">
+	<id property="idProductMessageReply" column="idProductMessageReply"/>
+	<result property="messageId" column="messageId"/>
+	<result property="replyUserId" column="replyUserId"/>
+	<result property="beReplyUserId" column="beReplyUserId"/>
+	<result property="reply" column="reply"/>
+	<association property="replyUserName" select="com.C2C.Mapper.UserMapper.getUserNameByIduser" column="replyUserId"></association>
+	<association property="beReplyUserName" select="com.C2C.Mapper.UserMapper.getUserNameByIduser" column="beReplyUserId"></association>
+</resultMap>
+
+</mapper>
