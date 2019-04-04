@@ -25,8 +25,7 @@ public class BaseServlet extends HttpServlet {
 		applicationcontext = WebApplicationContextUtils.getWebApplicationContext(this.getServletContext());
 	}
 
-	@Override
-	public void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String methodName = request.getParameter("method");
 		if (methodName == null || methodName.trim().isEmpty()) {
 			throw new RuntimeException("没有传递method参数，无法确定想要调用的方法");
@@ -66,4 +65,9 @@ public class BaseServlet extends HttpServlet {
 			throw new RuntimeException(e);
 		}
 	}
+
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		doGet(request, response);
+	}
+	
 }

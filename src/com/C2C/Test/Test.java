@@ -12,6 +12,7 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 import com.C2C.Entity.Good;
 import com.C2C.Entity.GoodLeaveMessage;
+import com.C2C.Entity.Message;
 import com.C2C.Entity.Position;
 import com.C2C.Entity.ProductMessageReply;
 import com.C2C.Service.GoodLeaveMessageService;
@@ -22,6 +23,8 @@ import com.C2C.Service.Impl.GoodLeaveMessageServiceImpl;
 import com.C2C.Service.Impl.GoodServiceImpl;
 import com.C2C.Service.Impl.PositionServiceImpl;
 import com.C2C.Service.Impl.ProductMessageReplyServiceImpl;
+
+import net.sf.json.JSONObject;
 
 public class Test {
 
@@ -64,11 +67,19 @@ public class Test {
 		printElements(leaveMessages);
 	}
 	
+	private static void testJson() {
+		String msg = "{'getter':1,'sender':2,'message':'ÄãºÃ°¡'}";
+		JSONObject jsonTo = JSONObject.fromObject(msg);
+		Message message = (Message)JSONObject.toBean(jsonTo, Message.class);
+		System.out.println(message);
+	}
+	
 	public static void main(String[] args) throws IOException{
-		testSearchGood();
+//		testSearchGood();
 //		testPosition();
 //		testProductMessageReplyServiceImpl();
 //		testGoodLeaveMessageServiceImpl();
+		testJson();
 	}
 	
 }
