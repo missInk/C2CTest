@@ -6,7 +6,6 @@ public class Store {
 
 	private int idStore;
 	private int storeOwner;
-	private String range;
 	private String storeName;
 	private List<Good> goods;
 	private Position position;
@@ -51,17 +50,9 @@ public class Store {
 		this.storeOwner = storeOwner;
 	}
 
-	public String getRange() {
-		return range;
-	}
-
-	public void setRange(String range) {
-		this.range = range;
-	}
-
 	@Override
 	public String toString() {
-		return "Store [idStore=" + idStore + ", storeOwner=" + storeOwner + ", range=" + range + ", storeName="
+		return "Store [idStore=" + idStore + ", storeOwner=" + storeOwner + ", storeName="
 				+ storeName + ", goods=" + goods + ", position=" + position + "]";
 	}
 

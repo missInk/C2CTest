@@ -5,6 +5,24 @@ public class Position {
 	private int idposition;
 	private String positionName;
 	private String firstWorld;
+	private String range;
+	private String secondWorld;
+
+	public String getRange() {
+		return range;
+	}
+
+	public void setRange(String range) {
+		this.range = range;
+	}
+
+	public String getSecondWorld() {
+		return secondWorld;
+	}
+
+	public void setSecondWorld(String secondWorld) {
+		this.secondWorld = secondWorld;
+	}
 
 	public int getIdposition() {
 		return idposition;
@@ -20,8 +38,7 @@ public class Position {
 
 	@Override
 	public String toString() {
-		return "Position [idposition=" + idposition + ", positionName=" + positionName + ", firstWorld=" + firstWorld
-				+ "]";
+		return "Position [idposition=" + idposition + ", positionName=" + positionName + ", range=" + range + "]";
 	}
 
 	public void setPositionName(String positionName) {
