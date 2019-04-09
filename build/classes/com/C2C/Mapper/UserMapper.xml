@@ -9,7 +9,11 @@
 </select>
 
 <select id="getUserByIdUser" resultType="com.C2C.Entity.User">
-	SELECT user.idUser, user.userName, user.headPortrait FROM c2cdemo.user where idUser = #{idUser}
+	SELECT user.idUser, user.userName, user.headPortrait, user.school, user.sex FROM c2cdemo.user where idUser = #{idUser}
+</select>
+
+<select id="checkUser" resultType="Integer">
+	SELECT idUser FROM c2cdemo.user where email=#{email} and password=#{password}
 </select>
 
 </mapper>

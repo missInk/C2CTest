@@ -8,7 +8,7 @@ public class User {
 	private String userName;
 	private String passWord;
 	private String sex;
-	private String birthDay;
+	private String school;
 	private Store store;
 
 	public Store getStore() {
@@ -67,19 +67,19 @@ public class User {
 		this.sex = sex;
 	}
 
-	public String getBirthDay() {
-		return birthDay;
+	public String getschool() {
+		return school;
 	}
 
-	public void setBirthDay(String birthDay) {
-		this.birthDay = birthDay;
+	public void setschool(String school) {
+		this.school = school;
 	}
 
 
 	@Override
 	public String toString() {
 		return "User [idUser=" + idUser + ", headPortrait=" + headPortrait + ", email=" + email + ", userName="
-				+ userName + ", passWord=" + passWord + ", sex=" + sex + ", birthDay=" + birthDay + ", store=" + store
+				+ userName + ", passWord=" + passWord + ", sex=" + sex + ", school=" + school + ", store=" + store
 				+ "]";
 	}
 

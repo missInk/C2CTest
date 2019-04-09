@@ -21,8 +21,11 @@ import com.C2C.Service.PositionService;
 import com.C2C.Service.ProductMessageReplyService;
 import com.C2C.Service.Impl.GoodLeaveMessageServiceImpl;
 import com.C2C.Service.Impl.GoodServiceImpl;
+import com.C2C.Service.Impl.PayServiceImpl;
 import com.C2C.Service.Impl.PositionServiceImpl;
 import com.C2C.Service.Impl.ProductMessageReplyServiceImpl;
+import com.C2C.Service.Impl.UserServiceImpl;
+import com.alipay.api.AlipayApiException;
 
 import net.sf.json.JSONObject;
 
@@ -74,12 +77,31 @@ public class Test {
 		System.out.println(message);
 	}
 	
+	private static void testPayServiceImpl() throws IOException {
+		ApplicationContext context = new ClassPathXmlApplicationContext("applicationContext.xml");
+		PayServiceImpl payService = (PayServiceImpl)context.getBean("payServiceImpl");
+		try {
+			System.out.println(payService.pay(payService.newOrder(2)));
+		} catch (AlipayApiException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+	
+	private static void testUserServiceImpl() throws IOException {
+		ApplicationContext context = new ClassPathXmlApplicationContext("applicationContext.xml");
+		UserServiceImpl userService = (UserServiceImpl)context.getBean("userServiceImpl");
+		System.out.println(userService.checkUser("2453671894@qq.com", "123456"));
+	}
+	
 	public static void main(String[] args) throws IOException{
 //		testSearchGood();
 //		testPosition();
 //		testProductMessageReplyServiceImpl();
 //		testGoodLeaveMessageServiceImpl();
-		testJson();
+//		testJson();
+//		testPayServiceImpl();
+		testUserServiceImpl();
 	}
 	
 }

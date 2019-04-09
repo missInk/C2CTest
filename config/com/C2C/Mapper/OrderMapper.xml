@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.C2C.Mapper.OrderMapper">
+
+<select id="getSimpleGood" resultType="com.C2C.Entity.Good">
+	SELECT idGoods,goodName,price FROM c2cdemo.goods where idGoods = #{idGood}
+</select>
+
+<insert id="insert"  useGeneratedKeys="true" keyProperty="idOrder">
+	INSERT INTO `c2cdemo`.`order` (`idorder`, `idgood`, `state`) 
+	VALUES (#{order.idOrder}, #{order.good.idGoods}, #{order.state})
+</insert>
+
+</mapper>

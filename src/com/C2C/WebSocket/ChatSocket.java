@@ -14,9 +14,6 @@ import javax.websocket.Session;
 import javax.websocket.server.PathParam;
 import javax.websocket.server.ServerEndpoint;
 
-import org.springframework.context.ApplicationContext;
-import org.springframework.context.support.ClassPathXmlApplicationContext;
-
 import com.C2C.Entity.Message;
 
 import net.sf.json.JSONObject;
@@ -28,7 +25,6 @@ public class ChatSocket {
     private static Map<Integer, ChatSocket> clients = new ConcurrentHashMap<Integer, ChatSocket>();  
     private Session session;  
     private Integer idUser;
-    private static ApplicationContext context = new ClassPathXmlApplicationContext("applicationContext.xml");
 	
     @OnOpen
 	public void onOpen(@PathParam("idUser") int idUser, Session session) throws IOException {  

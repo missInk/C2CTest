@@ -68,4 +68,12 @@
 		<property name="goodLeaveMessageMapper" ref="goodLeaveMessageMapper"></property>
 	</bean>
 	
+	<bean id="payServiceImpl" class="com.C2C.Service.Impl.PayServiceImpl">
+		<property name="orderMapper" ref="orderMapper"></property>
+	</bean>
+	
+	<bean id="userServiceImpl" class="com.C2C.Service.Impl.UserServiceImpl">
+		<property name="userMapper" ref="userMapper"></property>
+	</bean>
+	
 </beans>

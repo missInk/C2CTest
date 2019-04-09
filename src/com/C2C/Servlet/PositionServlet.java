@@ -19,8 +19,6 @@ public class PositionServlet extends BaseServlet {
 	 * 获取所有的地点，并通过json格式返回给原网页
 	 */
 	public void getAllPositions(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		request.setCharacterEncoding("utf-8");
-		response.setContentType("text/html;charset=UTF-8");
 		
 		PositionService positionService = (PositionServiceImpl)this.getApplicationcontext().getBean("positionServiceImpl");
 		response.getWriter().print(positionService.getStorePositions());

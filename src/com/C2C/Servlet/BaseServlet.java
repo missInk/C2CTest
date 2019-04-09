@@ -26,6 +26,9 @@ public class BaseServlet extends HttpServlet {
 	}
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		request.setCharacterEncoding("utf-8");
+		response.setContentType("text/html;charset=UTF-8");
+		
 		String methodName = request.getParameter("method");
 		if (methodName == null || methodName.trim().isEmpty()) {
 			throw new RuntimeException("没有传递method参数，无法确定想要调用的方法");
