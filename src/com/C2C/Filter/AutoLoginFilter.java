@@ -20,7 +20,7 @@ import com.C2C.Entity.User;
 import com.C2C.Service.UserService;
 import com.C2C.Service.Impl.UserServiceImpl;
 
-@WebFilter(urlPatterns="/index.jsp")
+@WebFilter(value="/index.jsp")
 public class AutoLoginFilter implements Filter {
 
 	private ApplicationContext context;
