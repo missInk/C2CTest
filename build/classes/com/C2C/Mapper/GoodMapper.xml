@@ -4,46 +4,35 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.C2C.Mapper.GoodMapper">
 
-  <select id="getGoodsByStore" resultMap="goodResultMap">
-    SELECT 
-		goods.idGoods, 
-		goods.category,
-		goods.sellStore,
-		goods.goodName,
-		goods.price,
-		goods.goodIntroduce,
-	    store.idStore,
-	    store.storeOwner,
-	    store.storeName,
-	    store.range
-	FROM c2cdemo.goods, c2cdemo.store where goods.state = '0'
-	and goods.sellStore in (store.idStore)
-	and store.position = #{good.owner.position.idposition}
-	and store.range like #{good.owner.range}
-	<if test="good.category != null">
-		and goods.category = #{good.category} 
-	</if>
-	<if test="good.minPrice != null and good.maxPrice != null">
-		and goods.price between #{good.minPrice} and #{good.maxPrice} 
-	</if>
-	limit #{page},#{size}
-  </select>
-  
-  <resultMap id="goodResultMap" type="com.C2C.Entity.Good" autoMapping="true">
-  	<association property="owner" javaType="com.C2C.Entity.Store">
-  		<id property="idStore" column="idStore"/>
-  		<result property="storeOwner" column="storeOwner"/>
-  		<result property="range" column="range"/>
-  		<result property="storeName" column="storeName"/>
-  	</association>
-  </resultMap>
-  
   <select id="getGoodByIdGoods" resultMap="goodAndMessage">
   	SELECT * FROM c2cdemo.goods where idGoods = #{idGoods}
   </select>
   
   <resultMap type="com.C2C.Entity.Good" id="goodAndMessage" autoMapping="true">
   	<association property="leaveMessages" select="com.C2C.Mapper.GoodLeaveMessageMapper.getGoodLeaveMessageByGoodId" column="idGoods"></association>
+  </resultMap>
+  
+  <select id="getGoodsByPositionAndPage" resultMap="goodsByPositionAndPage">
+  	SELECT 
+	goods.idGoods,
+	goods.goodPhoto1,
+	goods.goodName,
+	goods.price,
+	store.storeOwner
+	FROM goods,store
+	where store.position = (
+		select idposition from position where position.positionName like #{positionName} and position.range like #{range} limit 0,1
+	) 
+	and goods.sellStore = store.idStore
+	order by idGoods
+	limit #{page},25
+  </select>
+  
+  <resultMap type="com.C2C.Entity.Good" id="goodsByPositionAndPage" autoMapping="true">
+  	<association property="owner" javaType="com.C2C.Entity.Store">
+  		<result property="idStore" column="storeOwner"/>
+  		<association property="storeOwner" javaType="com.C2C.Entity.User" select="com.C2C.Mapper.UserMapper.getUserInfo" column="storeOwner"></association>
+  	</association>
   </resultMap>
   
 </mapper>

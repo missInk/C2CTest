@@ -8,18 +8,13 @@ import com.C2C.Entity.Good;
 public interface GoodService {
 
 	/**
-	 * 通过商家范围，商品种类，商品种类，选择的页面位置，选择的页面位置来搜索商品列表
-	 * @param idposition 商店所处城市的id
-	 * @param range 商家范围
-	 * @param category 商品种类
-	 * @param minPrice 商品的最低价格
-	 * @param maxPrice 商品的最高价格
-	 * @param page 选择的页面位置
-	 * @param size 单个页面显示商品的数量
-	 * @return 商品列表
-	 * @throws IOException 
+	 * 通过位置信息和当前的页数来返回一个商品集合
+	 * @param positionName 位置信息的一部分（城市名）
+	 * @param range 位置信息的一部分（详细位置）
+	 * @param page 当前页数
+	 * @return 一个商品集合
 	 */
-	List<Good> getGoodsByStore(int idposition, String range, String category, double minPrice, double maxPrice, int page, int size) throws IOException;
+	List<Good> getGoodsByPositionAndPage(String positionName, String range, int page) throws IOException;
 	
 	/**
 	 * 通过商品的ID来获得商品的实体信息

@@ -5,7 +5,7 @@ import java.util.List;
 public class Store {
 
 	private int idStore;
-	private int storeOwner;
+	private User storeOwner;
 	private String storeName;
 	private List<Good> goods;
 	private Position position;
@@ -42,11 +42,12 @@ public class Store {
 		this.idStore = idStore;
 	}
 
-	public int getStoreOwner() {
+
+	public User getStoreOwner() {
 		return storeOwner;
 	}
 
-	public void setStoreOwner(int storeOwner) {
+	public void setStoreOwner(User storeOwner) {
 		this.storeOwner = storeOwner;
 	}
 

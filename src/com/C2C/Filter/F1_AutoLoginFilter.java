@@ -21,7 +21,7 @@ import com.C2C.Service.UserService;
 import com.C2C.Service.Impl.UserServiceImpl;
 
 @WebFilter(value="/index.jsp")
-public class AutoLoginFilter implements Filter {
+public class F1_AutoLoginFilter implements Filter {
 
 	private ApplicationContext context;
 	
@@ -65,7 +65,7 @@ public class AutoLoginFilter implements Filter {
                 }
             }
         }
-        chain.doFilter(req, resp);
+        chain.doFilter(request, response);
     }
     
     @Override

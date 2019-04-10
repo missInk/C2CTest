@@ -18,7 +18,7 @@ public interface UserService {
 	 * 根据用户的邮箱和密码返回用户的基本信息
 	 * @param email 用户的邮箱
 	 * @param password 用户的密码
-	 * @return 用户的基本信息
+	 * @return 用户的基本信息(用户ID，用户名，用户头像，用户性别，用户学校)
 	 */
 	User getUserInfo(String email, String password);
 	

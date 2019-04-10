@@ -21,6 +21,13 @@ public interface UserMapper {
 	User getUserByIdUser(int idUser);
 	
 	/**
+	 * 通过用户id来获得用户的简单信息
+	 * @param idUser 用户id
+	 * @return 用户的简单信息（用户名，用户头像）
+	 */
+	User getUserInfo(int idUser);
+	
+	/**
 	 * 检查用户是否合法
 	 * @param email 用户的邮箱
 	 * @param password 用户的密码

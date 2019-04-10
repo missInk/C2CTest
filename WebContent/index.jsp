@@ -1,3 +1,7 @@
+<%@page import="java.util.Iterator"%>
+<%@page import="com.C2C.Entity.Good"%>
+<%@page import="java.util.List"%>
+<%@page import="com.C2C.Entity.Position"%>
 <%@page import="com.C2C.Entity.User"%>
 <%@ page language="java" contentType="text/html; charset=utf-8"
     pageEncoding="utf-8"%>
@@ -31,6 +35,18 @@
     	out.println(" 性别："+user.getSex());
     	out.println(" 学校："+user.getschool());
     	out.println(" 头像："+user.getHeadPortrait());
+    }
+    if(session.getAttribute("position") != null){
+       	Position position = (Position)session.getAttribute("position");
+       	out.println(position.getPositionName() +":" +position.getRange());
+    }
+    if(session.getAttribute("goods") != null){
+    	List<Good> goods = (List<Good>)session.getAttribute("goods");
+    	Iterator iterator = goods.iterator();
+       	while(iterator.hasNext()){
+       		Good good = (Good)iterator.next();
+       		out.println("<br/>"+good.getGoodPhoto1()+good.getGoodName()+good.getOwner().getStoreOwner().getHeadPortrait()+good.getOwner().getStoreOwner().getUserName()+"<br/>");
+       	}
     }
     %>
     <div class="main"></div>

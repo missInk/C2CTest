@@ -13,14 +13,11 @@ import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import org.springframework.context.ApplicationContext;
-import org.springframework.context.support.ClassPathXmlApplicationContext;
+import com.C2C.Entity.Position;
 
 @WebFilter(value="/index.jsp")
-public class PositionFilter implements Filter  {
+public class F2_PositionFilter implements Filter  {
 
-	private ApplicationContext context;
-	
 	@Override
 	public void destroy() {
 		
@@ -48,13 +45,26 @@ public class PositionFilter implements Filter  {
         if (cookie != null) {
             String[] split = cookie.getValue().split("&");
             String positionName = split[0];
+            String range = split[0];
+            Position position = new Position();
+            position.setPositionName(positionName);
+            position.setRange(range);
+            req.getSession().setAttribute("position", position);
+        }else {
+        	Cookie positionCookie = new Cookie("position","南昌&江西农业大学");
+        	positionCookie.setMaxAge(360000);
+        	positionCookie.setPath(" /login/index.jsp");
+    		resp.addCookie(positionCookie);
+    		Position position = new Position();
+            position.setPositionName("南昌");
+            position.setRange("江西农业大学");
+            req.getSession().setAttribute("position", position);
         }
-        chain.doFilter(req, response);
+        chain.doFilter(request, response);
     }
-
+	
 	@Override
 	public void init(FilterConfig arg0) throws ServletException {
-		context = new ClassPathXmlApplicationContext("applicationContext.xml");
 	}
 
 }

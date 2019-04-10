@@ -10,7 +10,6 @@ public class ChatConfig implements ServerApplicationConfig{
 
 	@Override
 	public Set<Class<?>> getAnnotatedEndpointClasses(Set<Class<?>> scand) {
-		System.out.println("config.."+scand.size());
 		return scand;
 	}
 

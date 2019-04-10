@@ -7,5 +7,9 @@
 	<select id="getStorePositions" resultType="com.C2C.Entity.Position">
 		SELECT * FROM c2cdemo.position order by firstWorld ASC;
 	</select>
+	
+	<select id="getIdPositionByRange" resultType="int">
+		SELECT idposition FROM c2cdemo.position where positionName=#{positionName} and range=#{range};
+	</select>
 
 </mapper>

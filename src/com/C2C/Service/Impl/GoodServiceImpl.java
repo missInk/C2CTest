@@ -33,23 +33,14 @@ public class GoodServiceImpl implements GoodService {
 	}
 
 	@Override
-	public List<Good> getGoodsByStore(int idposition, String range, String category, double minPrice, double maxPrice, int page, int size) throws IOException {
-		Store store = new Store();
-		Position position = new Position();
-		position.setIdposition(idposition);
-		store.setPosition(position);
-		store.setRange(toFuzzyRange(range));
-		Good good = new Good();
-		good.setCategory(category);
-		good.setPriceRange(minPrice, maxPrice);
-		good.setOwner(store);
-		List<Good> goods = goodMapper.getGoodsByStore(good, page-1, size);
-		return goods;
+	public Good getGoodByIdGoods(int idGoods) {
+		return goodMapper.getGoodByIdGoods(idGoods);
 	}
 
 	@Override
-	public Good getGoodByIdGoods(int idGoods) {
-		return goodMapper.getGoodByIdGoods(idGoods);
+	public List<Good> getGoodsByPositionAndPage(String positionName, String range, int page) throws IOException {
+		range = toFuzzyRange(range);
+		return goodMapper.getGoodsByPositionAndPage(positionName, range, 25*(page-1));
 	}
 
 }

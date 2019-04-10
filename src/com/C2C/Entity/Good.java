@@ -9,18 +9,12 @@ public class Good {
 	 * 商品分类
 	 */
 	private String category;
-	/**
-	 * 商品所有者（商店）的ID
-	 */
-	private int sellStore;
 	private String goodName;
 	private double price;
 	/**
 	 * 商品描述
 	 */
 	private String goodIntroduce;
-	private double minPrice;
-	private double maxPrice;
 	private String goodPhoto1;
 	private String goodPhoto2;
 	private String goodPhoto3;
@@ -90,23 +84,6 @@ public class Good {
 		this.goodPhoto3 = goodPhoto3;
 	}
 
-	/**
-	 * 设置商品的价格区间
-	 * 价格区间：0~50 50~100 100~200 200~400 400~1000 1000~2000 2000+
-	 */
-	public void setPriceRange(double minPrice, double maxPrice) {
-		this.minPrice = minPrice;
-		this.maxPrice = maxPrice;
-	}
-	
-	public double getMinPrice() {
-		return minPrice;
-	}
-
-	public double getMaxPrice() {
-		return maxPrice;
-	}
-
 	public int getIdGoods() {
 		return idGoods;
 	}
@@ -148,21 +125,11 @@ public class Good {
 		this.goodIntroduce = goodIntroduce;
 	}
 
-	public int getSellStore() {
-		return sellStore;
-	}
-
-	public void setSellStore(int sellStore) {
-		this.sellStore = sellStore;
-	}
-
 	@Override
 	public String toString() {
-		return "Good [idGoods=" + idGoods + ", category=" + category + ", sellStore=" + sellStore + ", goodName="
-				+ goodName + ", price=" + price + ", goodIntroduce=" + goodIntroduce + ", minPrice=" + minPrice
-				+ ", maxPrice=" + maxPrice + ", goodPhoto1=" + goodPhoto1 + ", goodPhoto2=" + goodPhoto2
-				+ ", goodPhoto3=" + goodPhoto3 + ", owner=" + owner + ", state=" + state + ", buyMen=" + buyMen
-				+ ", leaveMessages=" + leaveMessages + "]";
+		return "Good [idGoods=" + idGoods + ", goodName=" + goodName + ", price=" + price + ", goodPhoto1=" + goodPhoto1
+				+ ", owner=" + owner + "]";
 	}
+
 	
 }

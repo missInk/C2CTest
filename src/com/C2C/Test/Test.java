@@ -45,7 +45,9 @@ public class Test {
 		int page = 1;
 		int size = 15;
 		GoodService goodService = (GoodServiceImpl)context.getBean("goodServiceImpl");
-		System.out.println(goodService.getGoodByIdGoods(1));
+//		System.out.println(goodService.getGoodByIdGoods(1));
+		List<Good> goods = goodService.getGoodsByPositionAndPage("до╡Щ", range, 1);
+		printElements(goods);
 		/*List<Good> goods = goodService.getGoodsByStore(1, range, category, 0, 2000, page, size);
 		printElements(goods);*/
 	}
@@ -95,13 +97,13 @@ public class Test {
 	}
 	
 	public static void main(String[] args) throws IOException{
-//		testSearchGood();
+		testSearchGood();
 //		testPosition();
 //		testProductMessageReplyServiceImpl();
 //		testGoodLeaveMessageServiceImpl();
 //		testJson();
 //		testPayServiceImpl();
-		testUserServiceImpl();
+//		testUserServiceImpl();
 	}
 	
 }
