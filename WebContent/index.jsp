@@ -20,7 +20,7 @@
        </div>
        <div class="tr">
             <span>
-                <a href="./login.html">登陆</a>
+                <a href="${pageContext.request.contextPath }/login.jsp">登陆</a>
             </span>
             <span>
                 <a href="./login.html">取消</a>
@@ -45,7 +45,7 @@
     	Iterator iterator = goods.iterator();
        	while(iterator.hasNext()){
        		Good good = (Good)iterator.next();
-       		out.println("<br/>"+good.getGoodPhoto1()+good.getGoodName()+good.getOwner().getStoreOwner().getHeadPortrait()+good.getOwner().getStoreOwner().getUserName()+"<br/>");
+       		out.println("<br/>"+good.getGoodPhoto()+good.getGoodName()+good.getOwner().getStoreOwner().getHeadPortrait()+good.getOwner().getStoreOwner().getUserName()+"<br/>");
        	}
     }
     %>

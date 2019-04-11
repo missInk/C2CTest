@@ -54,6 +54,7 @@
 	
 	<bean id="goodServiceImpl" class="com.C2C.Service.Impl.GoodServiceImpl">
 		<property name="goodMapper" ref="goodMapper"></property>
+		<property name="storeService" ref="storeServiceImpl"></property>
 	</bean>
 	
 	<bean id="positionServiceImpl" class="com.C2C.Service.Impl.PositionServiceImpl">
@@ -74,6 +75,10 @@
 	
 	<bean id="userServiceImpl" class="com.C2C.Service.Impl.UserServiceImpl">
 		<property name="userMapper" ref="userMapper"></property>
+	</bean>
+	
+	<bean id="storeServiceImpl" class="com.C2C.Service.Impl.StoreServiceImpl">
+		<property name="storeMapper" ref="storeMapper"></property>
 	</bean>
 	
 </beans>

@@ -15,9 +15,7 @@ public class Good {
 	 * 商品描述
 	 */
 	private String goodIntroduce;
-	private String goodPhoto1;
-	private String goodPhoto2;
-	private String goodPhoto3;
+	private String goodPhoto;
 	private Store owner;
 	/**
 	 * 商品的状态
@@ -26,7 +24,16 @@ public class Good {
 	 */
 	private String state;
 	private int buyMen;
+	private String issueDate;
 	private List<GoodLeaveMessage> leaveMessages;
+
+	public String getIssueDate() {
+		return issueDate;
+	}
+
+	public void setIssueDate(String issueDate) {
+		this.issueDate = issueDate;
+	}
 
 	public List<GoodLeaveMessage> getLeaveMessages() {
 		return leaveMessages;
@@ -60,28 +67,12 @@ public class Good {
 		this.owner = owner;
 	}
 
-	public String getGoodPhoto1() {
-		return goodPhoto1;
+	public String getGoodPhoto() {
+		return goodPhoto;
 	}
 
-	public void setGoodPhoto1(String goodPhoto1) {
-		this.goodPhoto1 = goodPhoto1;
-	}
-
-	public String getGoodPhoto2() {
-		return goodPhoto2;
-	}
-
-	public void setGoodPhoto2(String goodPhoto2) {
-		this.goodPhoto2 = goodPhoto2;
-	}
-
-	public String getGoodPhoto3() {
-		return goodPhoto3;
-	}
-
-	public void setGoodPhoto3(String goodPhoto3) {
-		this.goodPhoto3 = goodPhoto3;
+	public void setGoodPhoto(String goodPhoto) {
+		this.goodPhoto = goodPhoto;
 	}
 
 	public int getIdGoods() {
@@ -127,7 +118,7 @@ public class Good {
 
 	@Override
 	public String toString() {
-		return "Good [idGoods=" + idGoods + ", goodName=" + goodName + ", price=" + price + ", goodPhoto1=" + goodPhoto1
+		return "Good [idGoods=" + idGoods + ", goodName=" + goodName + ", price=" + price + ", goodPhoto=" + goodPhoto
 				+ ", owner=" + owner + "]";
 	}
 

@@ -96,14 +96,21 @@ public class Test {
 		System.out.println(userService.checkUser("2453671894@qq.com", "123456"));
 	}
 	
+	private static void testGoodService() {
+		ApplicationContext context = new ClassPathXmlApplicationContext("applicationContext.xml");
+		GoodService goodService = (GoodServiceImpl)context.getBean("goodServiceImpl");
+		goodService.issueGood(3, "test", "100", null, null, "ÆäËû");
+	}
+	
 	public static void main(String[] args) throws IOException{
-		testSearchGood();
+//		testSearchGood();
 //		testPosition();
 //		testProductMessageReplyServiceImpl();
 //		testGoodLeaveMessageServiceImpl();
 //		testJson();
 //		testPayServiceImpl();
 //		testUserServiceImpl();
+		testGoodService();
 	}
 	
 }

@@ -1,6 +1,6 @@
-package com.C2C.Mapper;
+package com.C2C.Service;
 
-public interface StoreMapper {
+public interface StoreService {
 
 	/**
 	 * 通过用户的id来获得商店的id

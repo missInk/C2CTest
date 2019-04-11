@@ -22,5 +22,14 @@ public interface GoodMapper {
 	 * @param page 当前页数
 	 * @return 一个商品集合
 	 */
-	public List<Good> getGoodsByPositionAndPage(@Param("positionName")String positionName, @Param("range")String range, @Param("page")int page);
+	List<Good> getGoodsByPositionAndPage(@Param("positionName")String positionName, @Param("range")String range, @Param("page")int page);
+
+	/**
+	 * 发布一个商品
+	 * @param idStore 发布这个商品的商店的id
+	 * @param good 被发布的商品的实体信息
+	 * @return 1：发布成功  0：发布失败
+	 */
+	int issueGood(@Param("idStore")int idStore, @Param("good")Good good);
+	
 }

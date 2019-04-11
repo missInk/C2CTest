@@ -22,4 +22,17 @@ public interface GoodService {
 	 * @return 商品的实体
 	 */
 	Good getGoodByIdGoods(int idGoods);
+	
+	/**
+	 * 上传一个商品
+	 * @param idUser 上传人的id（必填）
+	 * @param goodName 商品的名字（必填）
+	 * @param price 商品的价格（必填）
+	 * @param goodPhoto 商品的图片
+	 * @param goodIntroduce 商品的描述
+	 * @param category 商品的种类（必填）
+	 * @return 成功：true 失败：false
+	 */
+	boolean issueGood(int idUser, String goodName, String price, String goodPhoto, String goodIntroduce, String category);
+	
 }

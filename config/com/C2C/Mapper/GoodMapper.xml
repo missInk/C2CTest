@@ -35,4 +35,12 @@
   	</association>
   </resultMap>
   
+  <!-- int issueGood(@Param("idUser")int idUser, @Param("good")Good good); -->
+  <insert id="issueGood">
+  	INSERT INTO `c2cdemo`.`goods` 
+  	(`category`, `sellStore`, `goodName`, `price`, `goodIntroduce`, `issueDate`) 
+  	VALUES 
+  	(#{good.category}, #{idStore}, #{good.goodName}, #{good.price}, #{good.goodIntroduce}, #{good.issueDate})
+  </insert>
+  
 </mapper>

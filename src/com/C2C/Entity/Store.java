@@ -6,7 +6,7 @@ public class Store {
 
 	private int idStore;
 	private User storeOwner;
-	private String storeName;
+	private String accont;
 	private List<Good> goods;
 	private Position position;
 
@@ -18,12 +18,12 @@ public class Store {
 		this.position = position;
 	}
 
-	public String getStoreName() {
-		return storeName;
+	public String getAccont() {
+		return accont;
 	}
 
-	public void setStoreName(String storeName) {
-		this.storeName = storeName;
+	public void setAccont(String accont) {
+		this.accont = accont;
 	}
 
 	public List<Good> getGoods() {
@@ -53,8 +53,8 @@ public class Store {
 
 	@Override
 	public String toString() {
-		return "Store [idStore=" + idStore + ", storeOwner=" + storeOwner + ", storeName="
-				+ storeName + ", goods=" + goods + ", position=" + position + "]";
+		return "Store [idStore=" + idStore + ", storeOwner=" + storeOwner + ", accont="
+				+ accont + ", goods=" + goods + ", position=" + position + "]";
 	}
 
 	
