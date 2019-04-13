@@ -22,7 +22,7 @@ public class UserServiceImpl implements UserService {
 
 	@Override
 	public Integer checkUser(String email, String passWord) {
-		Integer iduser = userMapper.checkUser(email, MD5Util.makeStringToMD5(passWord));
+		Integer iduser = userMapper.checkUser(email, passWord);
 		return iduser != null ? iduser : 0;
 	}
 
@@ -65,7 +65,7 @@ public class UserServiceImpl implements UserService {
 		int result = 0;
 		if(checkEmailStyle(email) && checkEmailRegist(email)) {
 			if(codeService.checkEcode(email, ecode)) {
-				result = userMapper.regist(email, userName, MD5Util.makeStringToMD5(passWord));
+				result = userMapper.regist(email, userName, passWord);
 			}
 		}
 		return result == 1 ? true : false;

@@ -21,7 +21,7 @@ public class UserServlet extends BaseServlet {
 		request.getSession().removeAttribute("uuidLogin");
 		if(reqUUID != null && checkAgain(reqUUID, sessUUID)) {
 			String email = request.getParameter("email");
-			String passWord = request.getParameter("passWord");
+			String passWord = (String)request.getAttribute("passWord");
 			UserService userService = (UserService)getApplicationcontext().getBean("userServiceImpl");
 			if(userService.checkUser(email, passWord) != 0){
 				Cookie cookie = userService.newCookie(email, passWord);
@@ -53,12 +53,15 @@ public class UserServlet extends BaseServlet {
 				//处理邮箱格式不正确，或已被注册的逻辑
 			}
 			String userName = (String)request.getParameter("userName");
-			String passWord = (String)request.getParameter("passWord");
-			String repassWord = (String)request.getParameter("repassWord");
+			String passWord = (String)request.getAttribute("passWord");
+			String repassWord = (String)request.getAttribute("repassWord");
 			String ecode = (String)request.getParameter("ecode");
 			if(userService.checkPassword(passWord, repassWord)) {
 				if(userService.regist(email, userName, passWord, ecode)) {
 					//处理注册成功逻辑
+					Cookie cookie = userService.newCookie(email, passWord);
+					response.addCookie(cookie);
+					return "r:/index.jsp";
 				}else {
 					//处理注册失败逻辑
 				}
