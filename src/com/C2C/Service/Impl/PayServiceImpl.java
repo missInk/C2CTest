@@ -1,6 +1,6 @@
 package com.C2C.Service.Impl;
 
-import com.C2C.Config.AlipayConfig;
+import com.C2C.Config.AlipayConfigDev;
 import com.C2C.Entity.Good;
 import com.C2C.Entity.Order;
 import com.C2C.Mapper.OrderMapper;
@@ -41,12 +41,12 @@ public class PayServiceImpl implements PayService {
 	@Override
 	public String pay(Order order) throws AlipayApiException {
 		//获得初始化的AlipayClient
-		AlipayClient alipayClient = new DefaultAlipayClient(AlipayConfig.gatewayUrl, AlipayConfig.app_id, AlipayConfig.merchant_private_key, "json", AlipayConfig.charset, AlipayConfig.alipay_public_key, AlipayConfig.sign_type);
+		AlipayClient alipayClient = new DefaultAlipayClient(AlipayConfigDev.gatewayUrl, AlipayConfigDev.app_id, AlipayConfigDev.merchant_private_key, "json", AlipayConfigDev.charset, AlipayConfigDev.alipay_public_key, AlipayConfigDev.sign_type);
 		
 		//设置请求参数
 		AlipayTradePagePayRequest alipayRequest = new AlipayTradePagePayRequest();
-		alipayRequest.setReturnUrl(AlipayConfig.return_url);
-		alipayRequest.setNotifyUrl(AlipayConfig.notify_url);
+		alipayRequest.setReturnUrl(AlipayConfigDev.return_url);
+		alipayRequest.setNotifyUrl(AlipayConfigDev.notify_url);
 		
 		//商户订单号，商户网站订单系统中唯一订单号，必填
 		String out_trade_no = String.valueOf(order.getidOrder());

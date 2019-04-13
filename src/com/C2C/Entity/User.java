@@ -10,6 +10,23 @@ public class User {
 	private String sex;
 	private String school;
 	private Store store;
+	private String alipay;
+	
+	public String getSchool() {
+		return school;
+	}
+
+	public void setSchool(String school) {
+		this.school = school;
+	}
+
+	public String getAlipay() {
+		return alipay;
+	}
+
+	public void setAlipay(String alipay) {
+		this.alipay = alipay;
+	}
 
 	public Store getStore() {
 		return store;

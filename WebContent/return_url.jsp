@@ -1,4 +1,4 @@
-<%@page import="com.C2C.Config.AlipayConfig"%>
+<%@page import="com.C2C.Config.AlipayConfigDev"%>
 <%@ page language="java" contentType="text/html; charset=utf-8"	pageEncoding="utf-8"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
@@ -11,7 +11,7 @@
 <%@ page import="com.alipay.api.*"%>
 <%@ page import="com.alipay.api.internal.util.*"%>
 <%
-/* *
+	/* *
  * 功能：支付宝服务器同步通知页面
  * 日期：2017-03-30  
  * 说明：
@@ -31,15 +31,15 @@
 		String[] values = (String[]) requestParams.get(name);
 		String valueStr = "";
 		for (int i = 0; i < values.length; i++) {
-			valueStr = (i == values.length - 1) ? valueStr + values[i]
-					: valueStr + values[i] + ",";
+	valueStr = (i == values.length - 1) ? valueStr + values[i]
+			: valueStr + values[i] + ",";
 		}
 		//乱码解决，这段代码在出现乱码时使用
 		valueStr = new String(valueStr.getBytes("ISO-8859-1"), "utf-8");
 		params.put(name, valueStr);
 	}
 	
-	boolean signVerified = AlipaySignature.rsaCheckV1(params, AlipayConfig.alipay_public_key, AlipayConfig.charset, AlipayConfig.sign_type); //调用SDK验证签名
+	boolean signVerified = AlipaySignature.rsaCheckV1(params, AlipayConfigDev.alipay_public_key, AlipayConfigDev.charset, AlipayConfigDev.sign_type); //调用SDK验证签名
 
 	//——请在这里编写您的程序（以下代码仅作参考）——
 	if(signVerified) {

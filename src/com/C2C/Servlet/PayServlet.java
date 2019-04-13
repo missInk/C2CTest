@@ -7,7 +7,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.C2C.Config.AlipayConfig;
+import com.C2C.Config.AlipayConfigDev;
 import com.C2C.Entity.Order;
 import com.C2C.Service.Impl.PayServiceImpl;
 import com.alipay.api.AlipayApiException;
@@ -43,7 +43,7 @@ public class PayServlet extends BaseServlet {
 	public void querry(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 		//获得初始化的AlipayClient
-		AlipayClient alipayClient = new DefaultAlipayClient(AlipayConfig.gatewayUrl, AlipayConfig.app_id, AlipayConfig.merchant_private_key, "json", AlipayConfig.charset, AlipayConfig.alipay_public_key, AlipayConfig.sign_type);
+		AlipayClient alipayClient = new DefaultAlipayClient(AlipayConfigDev.gatewayUrl, AlipayConfigDev.app_id, AlipayConfigDev.merchant_private_key, "json", AlipayConfigDev.charset, AlipayConfigDev.alipay_public_key, AlipayConfigDev.sign_type);
 		
 		//设置请求参数
 		AlipayTradeQueryRequest alipayRequest = new AlipayTradeQueryRequest();
