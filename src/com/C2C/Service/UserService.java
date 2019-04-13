@@ -9,7 +9,7 @@ public interface UserService {
 	/**
 	 * 检查用户是否合法
 	 * @param email 用户的邮箱
-	 * @param password 用户的密码
+	 * @param passWord 用户的密码 [会对密码进行MD5加密]
 	 * @return 合法：用户的主键  不合法：null
 	 */
 	Integer checkUser(String email, String passWord);
@@ -17,7 +17,7 @@ public interface UserService {
 	/**
 	 * 根据用户的邮箱和密码返回用户的基本信息
 	 * @param email 用户的邮箱
-	 * @param password 用户的密码
+	 * @param passWord 用户的密码
 	 * @return 用户的基本信息(用户ID，用户名，用户头像，用户性别，用户学校)
 	 */
 	User getUserInfo(String email, String passWord);
@@ -25,7 +25,7 @@ public interface UserService {
 	/**
 	 * 将用户的邮箱和密码保存到cookie中
 	 * @param email 用户的邮箱
-	 * @param password 用户的密码
+	 * @param passWord 用户的密码
 	 * @return 保存用户邮箱和密码的cookie
 	 */
 	Cookie newCookie(String email, String passWord);
@@ -49,7 +49,7 @@ public interface UserService {
 	 * 用户注册
 	 * @param email 用户注册的邮箱
 	 * @param userName 用户的用户名
-	 * @param password 用户的密码
+	 * @param password 用户的密码 [会对密码进行MD5加密]
 	 * @param ecode 邮箱验证码
 	 * @return 注册成功：true 注册失败：false
 	 */
@@ -61,4 +61,11 @@ public interface UserService {
 	 * @return 可以注册：true 不可注册：false
 	 */
 	boolean checkEmailRegist(String email);
+	
+	/**
+	 * 通过阿里账号获取用户信息
+	 * @param alipay 阿里账号
+	 * @return 用户的部分信息
+	 */
+	User getUserByAlipay(String alipay);
 }

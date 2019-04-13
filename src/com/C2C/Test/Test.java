@@ -19,26 +19,28 @@ import com.C2C.Service.GoodLeaveMessageService;
 import com.C2C.Service.GoodService;
 import com.C2C.Service.PositionService;
 import com.C2C.Service.ProductMessageReplyService;
+import com.C2C.Service.VerificationCodeService;
 import com.C2C.Service.Impl.GoodLeaveMessageServiceImpl;
 import com.C2C.Service.Impl.GoodServiceImpl;
 import com.C2C.Service.Impl.PayServiceImpl;
 import com.C2C.Service.Impl.PositionServiceImpl;
 import com.C2C.Service.Impl.ProductMessageReplyServiceImpl;
 import com.C2C.Service.Impl.UserServiceImpl;
+import com.C2C.Service.Impl.VerificationCodeServiceImpl;
 import com.alipay.api.AlipayApiException;
 
 import net.sf.json.JSONObject;
 
 public class Test {
 
-	private static void printElements(Collection c) {
+	public static void printElements(Collection c) {
 		Iterator it = c.iterator();
 		while(it.hasNext()) {
 			System.out.println(it.next());
 		}
 	}
 	
-	private static void testSearchGood() throws IOException {
+	public static void testSearchGood() throws IOException {
 		ApplicationContext context = new ClassPathXmlApplicationContext("applicationContext.xml");
 		String range = "江西农大";
 		String category = null;
@@ -52,34 +54,34 @@ public class Test {
 		printElements(goods);*/
 	}
 	
-	private static void testPosition() throws IOException {
+	public static void testPosition() throws IOException {
 		ApplicationContext context = new ClassPathXmlApplicationContext("applicationContext.xml");
 		PositionService goodService = (PositionServiceImpl)context.getBean("positionServiceImpl");
 		System.out.println(goodService.getStorePositions());
 	}
 	
-	private static void testProductMessageReplyServiceImpl() throws IOException {
+	public static void testProductMessageReplyServiceImpl() throws IOException {
 		ApplicationContext context = new ClassPathXmlApplicationContext("applicationContext.xml");
 		ProductMessageReplyService productMessageReplyService = (ProductMessageReplyServiceImpl)context.getBean("productMessageReplyServiceImpl");
 		List<ProductMessageReply> replys = productMessageReplyService.getProductMessageReplyById(1);
 		printElements(replys);
 	}
 	
-	private static void testGoodLeaveMessageServiceImpl() throws IOException {
+	public static void testGoodLeaveMessageServiceImpl() throws IOException {
 		ApplicationContext context = new ClassPathXmlApplicationContext("applicationContext.xml");
 		GoodLeaveMessageService leaveMessageService = (GoodLeaveMessageServiceImpl)context.getBean("goodLeaveMessageServiceImpl");
 		List<GoodLeaveMessage> leaveMessages = leaveMessageService.getGoodLeaveMessageByGoodId(1);
 		printElements(leaveMessages);
 	}
 	
-	private static void testJson() {
+	public static void testJson() {
 		String msg = "{'getter':1,'sender':2,'message':'你好啊'}";
 		JSONObject jsonTo = JSONObject.fromObject(msg);
 		Message message = (Message)JSONObject.toBean(jsonTo, Message.class);
 		System.out.println(message);
 	}
 	
-	private static void testPayServiceImpl() throws IOException {
+	public static void testPayServiceImpl() throws IOException {
 		ApplicationContext context = new ClassPathXmlApplicationContext("applicationContext.xml");
 		PayServiceImpl payService = (PayServiceImpl)context.getBean("payServiceImpl");
 		try {
@@ -90,16 +92,30 @@ public class Test {
 		}
 	}
 	
-	private static void testUserServiceImpl() throws IOException {
+	public static void testUserServiceImpl() throws IOException {
 		ApplicationContext context = new ClassPathXmlApplicationContext("applicationContext.xml");
 		UserServiceImpl userService = (UserServiceImpl)context.getBean("userServiceImpl");
-		System.out.println(userService.checkUser("2453671894@qq.com", "123456"));
+		String email = "2453671896@qq.com";
+		String passWord = "123456";
+//		System.out.println(userService.checkUser(email, passWord));
+//		System.out.println(userService.regist(email,"李四", passWord,null));
+		System.out.println(userService.getUserByAlipay("2088722235394212"));
 	}
 	
-	private static void testGoodService() {
+	public static void testGoodService() {
 		ApplicationContext context = new ClassPathXmlApplicationContext("applicationContext.xml");
 		GoodService goodService = (GoodServiceImpl)context.getBean("goodServiceImpl");
 		goodService.issueGood(3, "test", "100", null, null, "其他");
+	}
+	
+	public static void testCode() {
+		ApplicationContext context = new ClassPathXmlApplicationContext("applicationContext.xml");
+		VerificationCodeService codeService = (VerificationCodeServiceImpl)context.getBean("verificationCodeServiceImpl");
+//		System.out.println(codeService.insertEcode("2453671898@qq.com", "1234"));
+//		System.out.println(codeService.checkEcode("2453671898@qq.com", "12234"));
+//		System.out.println(codeService.checkEmail("2453671818@qq.com"));
+//		System.out.println(codeService.updateEcode("2453671898@qq.com", "1233"));
+		codeService.sendEamil("2453671898@qq.com", "1123");
 	}
 	
 	public static void main(String[] args) throws IOException{
@@ -110,7 +126,8 @@ public class Test {
 //		testJson();
 //		testPayServiceImpl();
 //		testUserServiceImpl();
-		testGoodService();
+//		testGoodService();
+//		testCode();
 	}
 	
 }

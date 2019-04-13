@@ -4,16 +4,16 @@ import javax.servlet.http.Cookie;
 
 import com.C2C.Entity.User;
 import com.C2C.Mapper.UserMapper;
-import com.C2C.Mapper.VerificationCodeMapper;
 import com.C2C.Service.UserService;
+import com.C2C.Util.MD5Util;
 
 public class UserServiceImpl implements UserService {
 
 	private UserMapper userMapper; 
-	private VerificationCodeMapper codeMapper;
+	private VerificationCodeServiceImpl codeService;
 	
-	public void setCodeMapper(VerificationCodeMapper codeMapper) {
-		this.codeMapper = codeMapper;
+	public void setCodeService(VerificationCodeServiceImpl codeService) {
+		this.codeService = codeService;
 	}
 
 	public void setUserMapper(UserMapper userMapper) {
@@ -22,7 +22,7 @@ public class UserServiceImpl implements UserService {
 
 	@Override
 	public Integer checkUser(String email, String passWord) {
-		Integer iduser = userMapper.checkUser(email, passWord);
+		Integer iduser = userMapper.checkUser(email, MD5Util.makeStringToMD5(passWord));
 		return iduser != null ? iduser : 0;
 	}
 
@@ -62,14 +62,23 @@ public class UserServiceImpl implements UserService {
 
 	@Override
 	public boolean regist(String email, String userName, String passWord, String ecode) {
-		// TODO Auto-generated method stub
-		return false;
+		int result = 0;
+		if(checkEmailStyle(email) && checkEmailRegist(email)) {
+			if(codeService.checkEcode(email, ecode)) {
+				result = userMapper.regist(email, userName, MD5Util.makeStringToMD5(passWord));
+			}
+		}
+		return result == 1 ? true : false;
 	}
 
 	@Override
 	public boolean checkEmailRegist(String email) {
-		// TODO Auto-generated method stub
-		return false;
+		return userMapper.checkEmailRegist(email) == null ? true : false;
+	}
+
+	@Override
+	public User getUserByAlipay(String alipay) {
+		return userMapper.getUserByAlipay(alipay);
 	}
 
 	

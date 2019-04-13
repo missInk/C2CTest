@@ -33,7 +33,7 @@
     	out.println(" 用户ID："+user.getIdUser());
     	out.println(" 用户名："+user.getUserName());
     	out.println(" 性别："+user.getSex());
-    	out.println(" 学校："+user.getschool());
+    	out.println(" 学校："+user.getSchool());
     	out.println(" 头像："+user.getHeadPortrait());
     }
     if(session.getAttribute("position") != null){
@@ -42,7 +42,7 @@
     }
     if(session.getAttribute("goods") != null){
     	List<Good> goods = (List<Good>)session.getAttribute("goods");
-    	Iterator iterator = goods.iterator();
+    	Iterator<Good> iterator = goods.iterator();
        	while(iterator.hasNext()){
        		Good good = (Good)iterator.next();
        		out.println("<br/>"+good.getGoodPhoto()+good.getGoodName()+good.getOwner().getStoreOwner().getHeadPortrait()+good.getOwner().getStoreOwner().getUserName()+"<br/>");

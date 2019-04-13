@@ -25,7 +25,7 @@ public interface UserMapper {
 	 * @param idUser 用户id
 	 * @return 用户的简单信息（用户名，用户头像）
 	 */
-	User getUserInfo(int idUser);
+	/*User getUserInfo(int idUser);*/
 	
 	/**
 	 * 检查用户是否合法
@@ -34,5 +34,28 @@ public interface UserMapper {
 	 * @return 合法：用户的主键  不合法：null
 	 */
 	Integer checkUser(@Param("email")String email, @Param("password")String password);
+	
+	/**
+	 * 用户注册
+	 * @param email 用户注册的邮箱
+	 * @param userName 用户的用户名
+	 * @param password 用户的密码
+	 * @return 注册成功：1 注册失败：0
+	 */
+	int regist(@Param("email")String email, @Param("userName")String userName, @Param("passWord")String passWord);
+	
+	/**
+	 * 检查某个邮箱是否已经被注册
+	 * @param email 被检查的邮箱
+	 * @return 被注册：该用户的idUser 没被注册：null
+	 */
+	Integer checkEmailRegist(String email);
+	
+	/**
+	 * 通过阿里账号获取用户信息
+	 * @param alipay 阿里账号
+	 * @return 用户的部分信息
+	 */
+	User getUserByAlipay(String alipay);
 	
 }

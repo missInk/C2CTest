@@ -84,15 +84,6 @@ public class User {
 		this.sex = sex;
 	}
 
-	public String getschool() {
-		return school;
-	}
-
-	public void setschool(String school) {
-		this.school = school;
-	}
-
-
 	@Override
 	public String toString() {
 		return "User [idUser=" + idUser + ", headPortrait=" + headPortrait + ", email=" + email + ", userName="

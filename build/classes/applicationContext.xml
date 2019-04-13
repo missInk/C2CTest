@@ -79,6 +79,11 @@
 	
 	<bean id="userServiceImpl" class="com.C2C.Service.Impl.UserServiceImpl">
 		<property name="userMapper" ref="userMapper"></property>
+		<property name="codeService" ref="verificationCodeServiceImpl"></property>
+	</bean>
+	
+	<bean id="verificationCodeServiceImpl" class="com.C2C.Service.Impl.VerificationCodeServiceImpl">
+		<property name="verificationCodeMapper" ref="verificationCodeMapper"></property>
 	</bean>
 	
 </beans>

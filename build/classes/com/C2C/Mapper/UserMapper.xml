@@ -5,19 +5,36 @@
 <mapper namespace="com.C2C.Mapper.UserMapper">
 
 <select id="getUserNameByIduser" resultType="String">
-	SELECT user.userName FROM c2cdemo.user where user.idUser = #{idUser}
+	SELECT user.userName FROM c2cdemo.user WHERE user.idUser = #{idUser}
 </select>
 
+<!-- User getUserByIdUser(int idUser); -->
 <select id="getUserByIdUser" resultType="com.C2C.Entity.User">
-	SELECT user.idUser, user.userName, user.headPortrait, user.school, user.sex FROM c2cdemo.user where idUser = #{idUser}
+	SELECT idUser, userName, headPortrait, school, sex FROM user WHERE idUser = #{idUser} LIMIT 0,1
 </select>
 
 <select id="checkUser" resultType="Integer">
-	SELECT idUser FROM c2cdemo.user where email=#{email} and password=#{password}
+	SELECT idUser FROM c2cdemo.user WHERE email=#{email} AND password=#{password} LIMIT 0,1
 </select>
 
+<!-- User getUserInfo(int idUser); -->
 <select id="getUserInfo" resultType="com.C2C.Entity.User">
 	SELECT user.idUser,user.userName, user.headPortrait FROM c2cdemo.user where idUser = #{idUser}
+</select>
+
+<!-- int regist(@Param("email")String email, @Param("userName")String userName, @Param("passWord")String passWord); -->
+<insert id="regist">
+	INSERT INTO `c2cdemo`.`user` (`email`, `userName`, `passWord`) VALUES (#{email}, #{userName}, #{passWord})
+</insert>
+
+<!-- boolean checkEmailRegist(String email); -->
+<select id="checkEmailRegist" resultType="Integer">
+	SELECT idUser FROM c2cdemo.user WHERE email=#{email} LIMIT 0,1
+</select>
+
+<!-- User getUserByAlipay(String alipay); -->
+<select id="getUserByAlipay" resultType="com.C2C.Entity.User">
+	SELECT user.idUser, user.userName, user.password, user.headPortrait, user.school, user.sex FROM c2cdemo.user WHERE alipay = #{alipay}
 </select>
 
 </mapper>
