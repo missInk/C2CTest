@@ -80,6 +80,23 @@ public class UserServiceImpl implements UserService {
 		return userMapper.getUserByAlipay(alipay);
 	}
 
+	@Override
+	public int binding(String email, String passWord, String alipay) {
+		if(checkUser(email, passWord) != 0) {
+			if(userMapper.binding(email, alipay)) {
+				return 1;
+			}
+		}else {
+			return -1;
+		}
+		return 0;
+	}
+
+	@Override
+	public String getHeadPortrait(String email) {
+		return userMapper.getHeadPortrait(email);
+	}
+
 	
 
 }

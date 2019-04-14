@@ -95,11 +95,13 @@ public class Test {
 	public static void testUserServiceImpl() throws IOException {
 		ApplicationContext context = new ClassPathXmlApplicationContext("applicationContext.xml");
 		UserServiceImpl userService = (UserServiceImpl)context.getBean("userServiceImpl");
-		String email = "2453671896@qq.com";
+		String email = "2453671898@qq.com";
 		String passWord = "123456";
+		String alipay = "2088722235394212";
 //		System.out.println(userService.checkUser(email, passWord));
 //		System.out.println(userService.regist(email,"ÀîËÄ", passWord,null));
-		System.out.println(userService.getUserByAlipay("2088722235394212"));
+//		System.out.println(userService.getUserByAlipay("2088722235394212"));
+		System.out.println(userService.binding(email, passWord, alipay));
 	}
 	
 	public static void testGoodService() {
@@ -130,13 +132,13 @@ public class Test {
 //		testGoodLeaveMessageServiceImpl();
 //		testJson();
 //		testPayServiceImpl();
-//		testUserServiceImpl();
+		testUserServiceImpl();
 //		testGoodService();
 //		testCode();
 //		testStyle();
-		String time = String.valueOf(System.currentTimeMillis());
+		/*String time = String.valueOf(System.currentTimeMillis());
 		String code = time.substring(time.length()-5);
-		System.out.println(code);
+		System.out.println(code);*/
 	}
 	
 }

@@ -24,7 +24,7 @@ public class PasswordFilter implements Filter {
 	public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException, ServletException {
 		 HttpServletRequest req = (HttpServletRequest) request;
 		 String passWord = req.getParameter("passWord");
-		 String repassWord = req.getParameter("passWord");
+		 String repassWord = req.getParameter("repassWord");
 		 if(passWord != null) {
 			 req.setAttribute("passWord", MD5Util.makeStringToMD5(passWord));
 		 }

@@ -117,6 +117,30 @@ public class UserServlet extends BaseServlet {
 		}
 	}
 	
+	public void binding(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		String email = request.getParameter("email");
+		String passWord = (String)request.getAttribute("passWord");
+		String alipay = request.getParameter("alipay");
+		int bindingResult = userService.binding(email, passWord, alipay);
+		if(bindingResult == 1) {
+			Cookie cookie = userService.newCookie(email, passWord);
+			response.addCookie(cookie);
+			User user = userService.getUserInfo(email, passWord);
+			request.getSession().setAttribute("user", user);
+			response.getWriter().print("success");
+		}else if(bindingResult == -1) {
+			response.getWriter().print("邮箱或密码错误");
+		}else {
+			response.getWriter().print("绑定支付宝账号是出现未知异常");
+		}
+	}
+	
+	public void getheadPortrait(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		String email = request.getParameter("email");
+		String headPortrait = userService.getHeadPortrait(email);
+		response.getWriter().print(headPortrait);
+	}
+	
 	/**
 	 * 检查表单是否重复提交
 	 * @param reqUUID request域中UUID的值

@@ -1,0 +1,113 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+/* body{
+    width: 350px;
+    height: auto;  
+    float: right;
+    background: rgba(255, 255, 255, 0.5);
+    position: relative;
+} */
+form{
+    width: 350px;
+    height: auto;
+    right: 56px;
+    top: 120px;
+    border: 1px solid rgb(226, 243, 69);
+    position: absolute;
+}
+a{
+    text-decoration: none;
+    color: rgb(107, 151, 107);
+    cursor: pointer;
+}
+/* 字体图标声明 */
+@font-face {
+    font-family: 'iconfont';
+    src: url('../iconfont/iconfont.eot');
+    src: url('../iconfont/iconfont.eot?#iefix') format('embedded-opentype'),
+        url('../iconfont/iconfont.woff2') format('woff2'),
+        url('../iconfont/iconfont.woff') format('woff'),
+        url('../iconfont/iconfont.ttf') format('truetype'),
+        url('../iconfont/iconfont.svg') format('svg');
+    }
+.iconfont {
+    font-family: "iconfont" !important;
+    font-size: 20px;
+    font-style: normal;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+ /* 字体图标声明 */
+
+/* 顶部 start */
+.top{
+    width: 350px;
+}
+.top-title{
+    width: 85px;
+    height: 40px;
+    background-color: skyblue;
+    border: 1px solid black;
+}
+.top-image{
+    margin: 0 auto;
+    height: 100px;
+    width: 100px;
+    border: 1px solid black;
+    border-radius: 50%;
+}
+/* 顶部 end */
+
+/* 信息填写部分 start */
+.main{
+    padding-top: 25px;
+}
+.login-info table,.register-info table{
+    margin:0 auto;
+}
+.login-info table td,.register-info table td{
+    float: left;
+}
+.login-info input,.register-info input{
+    width: 175px;
+    height: 25px;
+    font-size: 16px;
+    border: 0;
+    border-bottom: 1px solid rgb(148, 144, 144);
+}
+/* .register-info{
+    display: none;
+}
+/* 信息填写部分 end*/
+
+/* 底部 start */
+.bottom{
+    text-align: center;
+    height: 90px;
+}
+.bottom-buttom,.bottom-icon{
+    cursor: pointer;
+}
+.bottom input{
+    width: 98px;
+    height: 30px;
+    border: 0;
+    font-size: 20px;
+    background-color: rgb(22, 223, 72);
+    color: white;
+    text-align: center; 
+}
+.bottom-icon{
+    padding-top: 10px; 
+    font-size: 24px;
+}
+.bottom-icon span{
+    margin: 0 auto;
+    font-size: 24px;
+    /* padding-left: 30px; */
+  
+}
+/* 底部 end */
+

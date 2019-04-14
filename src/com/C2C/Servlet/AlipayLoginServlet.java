@@ -36,9 +36,16 @@ public class AlipayLoginServlet extends BaseServlet {
 	        String alipay = resp.getUserId();
 	        UserService userService = (UserService)getApplicationcontext().getBean("userServiceImpl");
 	        User user = userService.getUserByAlipay(alipay);
-	        Cookie cookie = userService.newCookie(user.getEmail(), user.getPassWord());
-	        response.addCookie(cookie);
-	        response.sendRedirect(request.getContextPath() + "/index.jsp");
+	        if(user != null) {
+		        Cookie cookie = userService.newCookie(user.getEmail(), user.getPassWord());
+		        response.addCookie(cookie);
+		        response.sendRedirect(request.getContextPath() + "/index.jsp");
+		        return;
+	        }else {
+	        	request.setAttribute("alipay", alipay);
+	        	request.getRequestDispatcher("binding.jsp").forward(request, response);
+	        	return;
+	        }
 	    } else {
 	    	//´¦Àíµ÷ÓÃÊ§°ÜÂß¼­
 	    	response.getWriter().println("µÇÂ¼Ê§°Ü£º"+resp.getSubMsg());

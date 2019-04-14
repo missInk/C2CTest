@@ -10,7 +10,7 @@ public interface UserService {
 	 * 检查用户是否合法
 	 * @param email 用户的邮箱
 	 * @param passWord 用户的密码 [会对密码进行MD5加密]
-	 * @return 合法：用户的主键  不合法：null
+	 * @return 合法：用户的主键  不合法：0
 	 */
 	Integer checkUser(String email, String passWord);
 	
@@ -68,4 +68,21 @@ public interface UserService {
 	 * @return 用户的部分信息
 	 */
 	User getUserByAlipay(String alipay);
+	
+	/**
+	 * 绑定支付宝账号
+	 * @param email 被绑定账号的邮箱
+	 * @param passWord 被绑定账号的密码
+	 * @param alipay 被绑定的支付宝id
+	 * @return 绑定成功：1  绑定失败 0 邮箱或密码错误：-1
+	 */
+	int binding(String email, String passWord, String alipay);
+	
+	/**
+	 * 获取头像
+	 * @param email 被获取的账号的邮箱
+	 * @return 头像地址
+	 */
+	String getHeadPortrait(String email);
+	
 }

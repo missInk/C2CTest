@@ -58,4 +58,19 @@ public interface UserMapper {
 	 */
 	User getUserByAlipay(String alipay);
 	
+	/**
+	 * 绑定支付宝账号 
+	 * @param email 被绑定的邮箱
+	 * @param alipay 支付宝id
+	 * @return 成功 true 失败false
+	 */
+	boolean binding(@Param("email")String email, @Param("alipay")String alipay);
+	
+	/**
+	 * 获取头像
+	 * @param email 被获取的账号的邮箱
+	 * @return 头像地址
+	 */
+	String getHeadPortrait(String email);
+	
 }
