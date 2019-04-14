@@ -26,10 +26,28 @@
       url('iconfont.svg#iconfont') format('svg');
 }
     </style>
-	<script type="text/javascript" src="${pageContext.request.contextPath }/js/preventDuplicateSub.js"></script>
+	<%-- <script type="text/javascript" src="${pageContext.request.contextPath }/js/preventDuplicateSub.js"></script> --%>
+	<!-- jQuery -->
+	<script src="${pageContext.request.contextPath }/js/jquery.min.js"></script>
+	<script type="text/javascript">
+		$(function(){
+			$("#email").change(function(){
+				var val = $(this).val();
+				val = $.trim(val);
+				if(val != ""){
+					var url = "${pageContext.request.contextPath }/UserServlet?method=checkEmail";
+					var args = {"email":val};
+					$.post(url,args,function(data){
+						$("#signinError").text(data);
+					})
+				}
+			})
+		})
+	</script>
 </head>
 <body>
-
+${loginError }
+<div id="signinError"></div>
 <form action="${pageContext.request.contextPath }/UserServlet?method=login" method="POST" class="form">
         <div class="top">
                <div class="firstrow">
@@ -48,18 +66,19 @@
                 <tr>
                     <td>邮箱：</td>
                     <td>
-                        <input type="text" name="email">
+                        <input type="text" name="email" id="email">
                     </td>
                 </tr>
                 <tr>
                     <td>密码：</td>
-                    <td><input type="text" name="password"></td>
+                    <td><input type="text" name="passWord"></td>
                 </tr>
             </table>
         </div>
+        <a href="AlipayLoginServlet?method=goAlipayLogin">使用支付宝快速登录</a>
         <div class="bottom">
         		<input type="hidden" value="<%=uuid %>" name="uuidLogin">
-                <input type="submit" value="登陆" class="submit">
+                <input type="submit" value="登陆" class="submit" id="submit">
         </div>
    </form>
 

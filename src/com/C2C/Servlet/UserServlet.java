@@ -14,6 +14,13 @@ import com.C2C.Service.UserService;
 public class UserServlet extends BaseServlet {
 	private static final long serialVersionUID = 1L;
        
+	private UserService userService;
+	
+	public void init() throws ServletException {
+		super.init();
+		userService = (UserService)getApplicationcontext().getBean("userServiceImpl");
+	}
+	
 	public String login(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String reqUUID = request.getParameter("uuidLogin");
 		String sessUUID = (String)request.getSession().getAttribute("uuidLogin");
@@ -22,7 +29,7 @@ public class UserServlet extends BaseServlet {
 		if(reqUUID != null && checkAgain(reqUUID, sessUUID)) {
 			String email = request.getParameter("email");
 			String passWord = (String)request.getAttribute("passWord");
-			UserService userService = (UserService)getApplicationcontext().getBean("userServiceImpl");
+			
 			if(userService.checkUser(email, passWord) != 0){
 				Cookie cookie = userService.newCookie(email, passWord);
 				response.addCookie(cookie);
@@ -32,10 +39,12 @@ public class UserServlet extends BaseServlet {
 				return "r:/index.jsp";
 			}else {
 				//处理登录失败逻辑
+				request.setAttribute("loginError", "密码错误登录失败");
 				System.out.println(email + "登录失败");
 			}
 		}else {
 			//处理重复提交表单逻辑
+			request.setAttribute("loginError", "重复提交表单");
 			System.out.println("重复提交表单");
 		}
 		return "/login.jsp";
@@ -47,12 +56,14 @@ public class UserServlet extends BaseServlet {
 		//令牌只能使用一次，所以使用完删除该令牌
 		request.getSession().removeAttribute("uuidRegist");
 		if(reqUUID != null && checkAgain(reqUUID, sessUUID)) {
-			UserService userService = (UserService)getApplicationcontext().getBean("userServiceImpl");
 			String email = (String)request.getParameter("email");
 			if(!userService.checkEmailStyle(email) || !userService.checkEmailRegist(email)) {
 				//处理邮箱格式不正确，或已被注册的逻辑
+				request.setAttribute("registerError", "邮箱格式不规范");
+				return "/register.jsp";
 			}
 			String userName = (String)request.getParameter("userName");
+			userName = new String(userName.getBytes("ISO-8859-1"), "utf-8");
 			String passWord = (String)request.getAttribute("passWord");
 			String repassWord = (String)request.getAttribute("repassWord");
 			String ecode = (String)request.getParameter("ecode");
@@ -64,10 +75,46 @@ public class UserServlet extends BaseServlet {
 					return "r:/index.jsp";
 				}else {
 					//处理注册失败逻辑
+					request.setAttribute("registerError", "注册失败");
 				}
+			}else {
+				request.setAttribute("registerError", "两次输入的密码不一致");
 			}
 		}
-		return "/regist.jsp";
+		return "/register.jsp";
+	}
+	
+	public void checkEmail(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		String email = (String)request.getParameter("email");
+		boolean result = userService.checkEmailRegist(email);
+		if(result) {
+			response.getWriter().println("没有该邮箱");
+		}
+	}
+	
+	public void checkEmailRegist(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		String email = (String)request.getParameter("email");
+		boolean result = userService.checkEmailRegist(email);
+		if(!result) {
+			response.getWriter().print("邮箱已被注册");
+		}
+	}
+	
+	public void checkEmailStyle(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		String email = (String)request.getParameter("email");
+		boolean result = userService.checkEmailStyle(email);
+		if(!result) {
+			response.getWriter().print("邮箱格式不正确");
+		}
+	}
+	
+	public void checkPassword(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		String passWord = (String)request.getParameter("passWord");
+		String repassWord = (String)request.getParameter("repassWord");
+		boolean result = userService.checkPassword(passWord, repassWord);
+		if(!result) {
+			response.getWriter().print("两次密码不一致");
+		}
 	}
 	
 	/**

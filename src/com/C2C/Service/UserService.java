@@ -63,7 +63,7 @@ public interface UserService {
 	boolean checkEmailRegist(String email);
 	
 	/**
-	 * 通过阿里账号获取用户信息
+	 * 通过阿里账号获取用户信息(邮箱 密码)
 	 * @param alipay 阿里账号
 	 * @return 用户的部分信息
 	 */

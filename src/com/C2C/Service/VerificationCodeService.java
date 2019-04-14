@@ -3,6 +3,18 @@ package com.C2C.Service;
 public interface VerificationCodeService {
 
 	/**
+	 * 给某一个邮箱发送验证码
+	 * @param email
+	 */
+	void sendCode(String email);
+	
+	/**
+	 * 返回一个长度为5的随机数字组合
+	 * @return 长度为5的随机数字组合
+	 */
+	String newCode();
+	
+	/**
 	 * 检查这个邮箱是否在之前就发送过验证码
 	 * @param email 被检查的邮箱
 	 * @return 发送过：true 没有发送过：false

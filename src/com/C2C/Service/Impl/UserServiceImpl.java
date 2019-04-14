@@ -5,7 +5,6 @@ import javax.servlet.http.Cookie;
 import com.C2C.Entity.User;
 import com.C2C.Mapper.UserMapper;
 import com.C2C.Service.UserService;
-import com.C2C.Util.MD5Util;
 
 public class UserServiceImpl implements UserService {
 
@@ -40,7 +39,7 @@ public class UserServiceImpl implements UserService {
 	public Cookie newCookie(String email, String passWord) {
 		Cookie cookie = new Cookie("autoLogin",email+"&"+passWord);
 		cookie.setMaxAge(360000);
-		cookie.setPath(" /login/index.jsp");
+		cookie.setPath("/C2CTest/index.jsp");
 		return cookie;
 	}
 

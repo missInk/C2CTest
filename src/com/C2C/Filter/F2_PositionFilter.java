@@ -45,7 +45,7 @@ public class F2_PositionFilter implements Filter  {
         if (cookie != null) {
             String[] split = cookie.getValue().split("&");
             String positionName = split[0];
-            String range = split[0];
+            String range = split[1];
             Position position = new Position();
             position.setPositionName(positionName);
             position.setRange(range);
@@ -53,7 +53,7 @@ public class F2_PositionFilter implements Filter  {
         }else {
         	Cookie positionCookie = new Cookie("position","南昌&江西农业大学");
         	positionCookie.setMaxAge(360000);
-        	positionCookie.setPath(" /login/index.jsp");
+        	positionCookie.setPath(" /C2CTest/index.jsp");
     		resp.addCookie(positionCookie);
     		Position position = new Position();
             position.setPositionName("南昌");

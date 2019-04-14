@@ -118,6 +118,11 @@ public class Test {
 		codeService.sendEamil("2453671898@qq.com", "1123");
 	}
 	
+	public static void testStyle() {
+		UserServiceImpl impl = new UserServiceImpl();
+		System.out.println(impl.checkEmailStyle("245"));
+	}
+	
 	public static void main(String[] args) throws IOException{
 //		testSearchGood();
 //		testPosition();
@@ -128,6 +133,10 @@ public class Test {
 //		testUserServiceImpl();
 //		testGoodService();
 //		testCode();
+//		testStyle();
+		String time = String.valueOf(System.currentTimeMillis());
+		String code = time.substring(time.length()-5);
+		System.out.println(code);
 	}
 	
 }

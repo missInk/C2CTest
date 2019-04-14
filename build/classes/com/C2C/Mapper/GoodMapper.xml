@@ -15,7 +15,7 @@
   <select id="getGoodsByPositionAndPage" resultMap="goodsByPositionAndPage">
   	SELECT 
 	goods.idGoods,
-	goods.goodPhoto1,
+	goods.goodPhoto,
 	goods.goodName,
 	goods.price,
 	store.storeOwner

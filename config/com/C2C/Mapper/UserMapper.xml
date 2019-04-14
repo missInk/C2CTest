@@ -34,7 +34,7 @@
 
 <!-- User getUserByAlipay(String alipay); -->
 <select id="getUserByAlipay" resultType="com.C2C.Entity.User">
-	SELECT user.idUser, user.userName, user.password, user.headPortrait, user.school, user.sex FROM c2cdemo.user WHERE alipay = #{alipay}
+	SELECT user.email, user.password FROM c2cdemo.user WHERE alipay = #{alipay}
 </select>
 
 </mapper>

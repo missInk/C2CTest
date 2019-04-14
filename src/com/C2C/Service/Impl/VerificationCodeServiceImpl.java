@@ -39,4 +39,21 @@ public class VerificationCodeServiceImpl implements VerificationCodeService {
 		return verificationCodeMapper.checkEcode(email, ecode) == null ? false : true;
 	}
 
+	@Override
+	public void sendCode(String email) {
+		String ecode = newCode();
+		if(checkEmail(email)) {
+			updateEcode(email, ecode);
+		}else {
+			insertEcode(email, ecode);
+		}
+		sendEamil(email, ecode);
+	}
+
+	@Override
+	public String newCode() {
+		String timeMillis = String.valueOf(System.currentTimeMillis());
+		return timeMillis.substring(timeMillis.length() - 5);
+	}
+
 }

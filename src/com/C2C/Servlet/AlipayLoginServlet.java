@@ -3,10 +3,13 @@ package com.C2C.Servlet;
 import java.io.IOException;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.C2C.Config.AlipayConfig;
+import com.C2C.Entity.User;
+import com.C2C.Service.UserService;
 import com.alipay.api.AlipayApiException;
 import com.alipay.api.AlipayClient;
 import com.alipay.api.DefaultAlipayClient;
@@ -30,8 +33,11 @@ public class AlipayLoginServlet extends BaseServlet {
 	 
 	    if (resp.isSuccess()) {
 	    	//处理调用成功逻辑
-	        String userId = resp.getUserId();
-	        System.out.println(userId);
+	        String alipay = resp.getUserId();
+	        UserService userService = (UserService)getApplicationcontext().getBean("userServiceImpl");
+	        User user = userService.getUserByAlipay(alipay);
+	        Cookie cookie = userService.newCookie(user.getEmail(), user.getPassWord());
+	        response.addCookie(cookie);
 	        response.sendRedirect(request.getContextPath() + "/index.jsp");
 	    } else {
 	    	//处理调用失败逻辑
