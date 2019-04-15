@@ -72,7 +72,7 @@ public class UserServlet extends BaseServlet {
 					//´¦Àí×¢²á³É¹¦Âß¼­
 					Cookie cookie = userService.newCookie(email, passWord);
 					response.addCookie(cookie);
-					return "r:/index.jsp";
+					return "r:/registSuccess.jsp";
 				}else {
 					//´¦Àí×¢²áÊ§°ÜÂß¼­
 					request.setAttribute("registerError", "×¢²áÊ§°Ü");

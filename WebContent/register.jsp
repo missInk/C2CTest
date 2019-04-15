@@ -24,7 +24,7 @@
         <div class="top">
             <div class="top-title">
                 <!-- 放置赚赚标题 -->
-                <img src="" alt="">赚赚
+                <img src="" alt="">赚赚注册界面
             </div> 
         </div> 
         <!--顶部 end-->
@@ -32,19 +32,19 @@
         <div class="main">
             <!--注册详细信息 start-->
             <div class="register-info">
-            	${registerError }
+            	<div style="text-align: center;">${registerError }</div>
                 <table>
                     <tr>
                         <td>
                             <i class="iconfont">&#xe64c;</i>
-                            <input type="text"  placeholder="邮箱" name="email" id="email">
+                            <input type="text"  placeholder="邮箱" name="email" id="email" required>
                             <div id="emailError"></div>
                         </td>
                     </tr>
                     <tr>                                         
                         <td>
                             <i class="iconfont">&#xe65a;</i>
-                            <input type="text" placeholder="用户名" name="userName" id="userName">
+                            <input type="text" placeholder="用户名" name="userName" id="userName" required>
                         </td>
                     </tr>
                         <td>
@@ -55,16 +55,15 @@
                     <tr>
                         <td>
                             <i class="iconfont">&#xe614;</i>
-                            <input type="password" placeholder="确认密码" requiredinput name="repassWord" id="repassWord">
+                            <input type="password" placeholder="确认密码" required name="repassWord" id="repassWord">
                             <div id="passWordError"></div>
                         </td>
                     </tr>
                     <tr>
                         <td>
                         	<div>
-	                            <span class=>邮箱验证码</span>
-	                            <input type="text" placeholder="邮箱验证码" requiredinput name="ecode" id="ecode">
-	                            <input type="button" value="发送验证码" id="sendCode">
+	                            <input type="text" placeholder="邮箱验证码" required name="ecode" id="ecode" style="width: 100px;">
+	                            <input type="button" value="发送验证码" id="sendCode" style="width: 100px;font-size: 11px;">
 	                            <div id="ecodeError">
                            	</div>
                         </td>
@@ -77,9 +76,9 @@
         <!--底部 start-->
         <div class="bottom">
             <div class="bottom-buttom">
-                <a href="${pageContext.request.contextPath }/login.jsp"><input value="登陆"></a>
                 <input type="hidden" value="<%=uuid %>" name="uuidRegist">
                 <input type="submit" value="注册">
+                <a href="${pageContext.request.contextPath }/login.jsp"  class="help_a">老用户？点击登录</a>
             </div>
         </div>
         <!--底部 end-->     

@@ -2,20 +2,20 @@
     margin: 0;
     padding: 0;
 }
-/* body{
-    width: 350px;
-    height: auto;  
-    float: right;
-    background: rgba(255, 255, 255, 0.5);
-    position: relative;
-} */
+body{
+    background-image: url(../images/bg.jpg);
+    background-size: 100%;
+    max-height:912px;
+    min-height:600px;
+} 
 form{
     width: 350px;
     height: auto;
-    right: 56px;
-    top: 120px;
-    border: 1px solid rgb(226, 243, 69);
+    right: 150px;
+    top: 130px;
+    border: 1px solid rgb(174, 175, 166);
     position: absolute;
+    background: rgba(255, 255, 255, 0.5);
 }
 a{
     text-decoration: none;
@@ -68,14 +68,16 @@ a{
     margin:0 auto;
 }
 .login-info table td,.register-info table td{
-    float: left;
+	margin-bottom: 10px;
+    float: right;
 }
 .login-info input,.register-info input{
-    width: 175px;
-    height: 25px;
+    width: 200px;
+    height: 27px;
     font-size: 16px;
     border: 0;
-    border-bottom: 1px solid rgb(148, 144, 144);
+    background-color: #e7e2db;
+    padding-left: 4px;
 }
 /* .register-info{
     display: none;
@@ -98,6 +100,7 @@ a{
     background-color: rgb(22, 223, 72);
     color: white;
     text-align: center; 
+    margin-left: 10px;
 }
 .bottom-icon{
     padding-top: 10px; 
@@ -107,7 +110,10 @@ a{
     margin: 0 auto;
     font-size: 24px;
     /* padding-left: 30px; */
-  
+}
+.help_a{
+	font-size: 11px;
+	color: #4a3737;
 }
 /* 底部 end */
 

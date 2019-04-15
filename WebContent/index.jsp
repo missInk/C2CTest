@@ -28,7 +28,7 @@
        </div>
     </div>
     <%
-    if(session.getAttribute("user") != null){
+    /* if(session.getAttribute("user") != null){
     	User user = (User)session.getAttribute("user");
     	out.println(" 用户ID："+user.getIdUser());
     	out.println(" 用户名："+user.getUserName());
@@ -47,7 +47,7 @@
        		Good good = (Good)iterator.next();
        		out.println("<br/>"+good.getGoodPhoto()+good.getGoodName()+good.getOwner().getStoreOwner().getHeadPortrait()+good.getOwner().getStoreOwner().getUserName()+"<br/>");
        	}
-    }
+    } */
     %>
     <div class="main"></div>
     <div class="bottom"></div>

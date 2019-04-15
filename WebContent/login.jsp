@@ -20,15 +20,15 @@
 <body>
 <div>
     <form  action="${pageContext.request.contextPath }/UserServlet?method=login" method="POST" >
-        <!--顶部 start-->;
+        <!--顶部 start-->
         <div class="top">
             <div class="top-title">
                 <!-- 放置赚赚标题 -->
-                <img src="" alt="">赚赚
+                <img src="" alt="">赚赚登录界面
             </div> 
             <div class="top-image">
                 <!-- 用户头像居中 -->
-                <img src="" alt="" id="headPortrait" style="width: 100%;">
+                <img src="" alt="" id="headPortrait" style="width: 100%;" class="top-image">
             </div>
         </div> 
         <!--顶部 end-->
@@ -36,7 +36,7 @@
         <div class="main">
             <!--登陆详细信息 start-->
             <div class="login-info">
-            	${loginError }
+            	<div style="text-align: center;">${loginError }</div>
                 <table>
                     <tr>
                         <td>
@@ -61,7 +61,7 @@
             <div class="bottom-buttom">
            	 	<input type="hidden" value="<%=uuid %>" name="uuidLogin">
                 <input type="submit" value="登陆">
-                <a href="${pageContext.request.contextPath }/register.jsp"><input value="注册"></a>
+                <a href="${pageContext.request.contextPath }/register.jsp" class="help_a">没有账号？点击注册</a>
                 <!-- <button>注册</button> -->
             </div>
             <div class="bottom-icon">
