@@ -13,4 +13,11 @@ public interface ProductMessageReplyMapper {
 	 */
 	List<ProductMessageReply> getProductMessageReplyByMessageId(int idProductMessageReply);
 	
+	/**
+	 * 获得某条留言回复的数量
+	 * @param messageId 留言的id
+	 * @return 回复的数量
+	 */
+	int getMessageReplyCount(int messageId);
+	
 }

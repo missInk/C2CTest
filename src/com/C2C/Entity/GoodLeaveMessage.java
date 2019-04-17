@@ -1,15 +1,20 @@
 package com.C2C.Entity;
 
-import java.util.List;
-
 public class GoodLeaveMessage {
 
 	private int idgoodLeaveMessage;
 	private int goodId;
-	private int leaveUserId;
 	private User leaveUser;
 	private String message;
-	private List<ProductMessageReply> replys;
+	private int replyCount;
+
+	public int getreplyCount() {
+		return replyCount;
+	}
+
+	public void setreplyCount(int replyCount) {
+		this.replyCount = replyCount;
+	}
 
 	public User getLeaveUser() {
 		return leaveUser;
@@ -35,14 +40,6 @@ public class GoodLeaveMessage {
 		this.goodId = goodId;
 	}
 
-	public int getLeaveUserId() {
-		return leaveUserId;
-	}
-
-	public void setLeaveUserId(int leaveUserId) {
-		this.leaveUserId = leaveUserId;
-	}
-
 	public String getMessage() {
 		return message;
 	}
@@ -51,18 +48,9 @@ public class GoodLeaveMessage {
 		this.message = message;
 	}
 
-	public List<ProductMessageReply> getReplys() {
-		return replys;
-	}
-
-	public void setReplys(List<ProductMessageReply> replys) {
-		this.replys = replys;
-	}
-
 	@Override
 	public String toString() {
-		return "GoodLeaveMessage [idgoodLeaveMessage=" + idgoodLeaveMessage + ", goodId=" + goodId + ", leaveUserId="
-				+ leaveUserId + ", leaveUser=" + leaveUser + ", message=" + message + ", replys=" + replys + "]";
+		return "GoodLeaveMessage [idgoodLeaveMessage=" + idgoodLeaveMessage + ", goodId=" + goodId + ", leaveUser=" + leaveUser + ", message=" + message + "]";
 	}
 
 }

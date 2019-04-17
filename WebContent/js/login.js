@@ -9,7 +9,7 @@ $(function(){
 			if(data == ""){
 				 url = "UserServlet?method=getheadPortrait";
 				 $.post(url,args,function(data){
-					 $("#headPortrait").attr("src",data);
+					 $("#headPortrait").attr("src",data.substring(1,data.length-1));
 				 })
 			}else{
 				$("#signinError").text(data);

@@ -1,7 +1,5 @@
 package com.C2C.Entity;
 
-import java.util.List;
-
 public class Good {
 
 	private int idGoods;
@@ -25,7 +23,6 @@ public class Good {
 	private User sellMen;
 	private User buyMen;
 	private String issueDate;
-	private List<GoodLeaveMessage> leaveMessages;
 
 	public String getIssueDate() {
 		return issueDate;
@@ -33,14 +30,6 @@ public class Good {
 
 	public void setIssueDate(String issueDate) {
 		this.issueDate = issueDate;
-	}
-
-	public List<GoodLeaveMessage> getLeaveMessages() {
-		return leaveMessages;
-	}
-
-	public void setLeaveMessages(List<GoodLeaveMessage> leaveMessages) {
-		this.leaveMessages = leaveMessages;
 	}
 
 	public String getState() {

@@ -1,4 +1,4 @@
-package com.C2C.Servlet;
+package com.C2C.Control;
 
 import java.io.IOException;
 

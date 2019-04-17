@@ -11,12 +11,12 @@
   <resultMap type="com.C2C.Entity.Good" id="goodAndMessage" autoMapping="true">
   	<result property="idGoods" column="idGoods"/>
   	<association property="sellMen" javaType="com.C2C.Entity.User" select="com.C2C.Mapper.UserMapper.getUserInfo" column="sellMen"></association>
- 	<association property="leaveMessages" select="com.C2C.Mapper.GoodLeaveMessageMapper.getGoodLeaveMessageByGoodId" column="idGoods"></association>
   </resultMap>
   
   <select id="getGoodsByPositionAndPage" resultMap="getSellMen">
   	SELECT 
 	goods.idGoods,
+	goods.category,
 	goods.goodPhoto,
 	goods.goodName,
 	goods.price,

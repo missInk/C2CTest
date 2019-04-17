@@ -11,10 +11,9 @@
 <resultMap type="com.C2C.Entity.GoodLeaveMessage" id="goodLeaveMessage">
 	<id property="idgoodLeaveMessage" column="idgoodLeaveMessage"/>
 	<result property="goodId" column="goodId"/>
-	<result property="leaveUserId" column="leaveUserId"/>
 	<result property="message" column="message"/>
 	<association property="leaveUser" select="com.C2C.Mapper.UserMapper.getUserByIdUser" column="leaveUserId"></association>
-	<association property="replys" select="com.C2C.Mapper.ProductMessageReplyMapper.getProductMessageReplyByMessageId" column="idgoodLeaveMessage"></association>
+	<association property="replyCount" select="com.C2C.Mapper.ProductMessageReplyMapper.getMessageReplyCount" column="idgoodLeaveMessage"></association>
 </resultMap>
 
 </mapper>

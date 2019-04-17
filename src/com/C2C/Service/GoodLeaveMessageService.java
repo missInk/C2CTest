@@ -13,4 +13,11 @@ public interface GoodLeaveMessageService {
 	 */
 	List<GoodLeaveMessage> getGoodLeaveMessageByGoodId(int goodId);
 	
+	/**
+	 * 将一个留言集合转化为一个json数组
+	 * @param leaveMessages 留言集合
+	 * @return 一个json数组格式的字符串
+	 */
+	String leaveMessageToJson(List<GoodLeaveMessage> leaveMessages);
+	
 }

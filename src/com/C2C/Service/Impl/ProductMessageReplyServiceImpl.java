@@ -6,6 +6,8 @@ import com.C2C.Entity.ProductMessageReply;
 import com.C2C.Mapper.ProductMessageReplyMapper;
 import com.C2C.Service.ProductMessageReplyService;
 
+import net.sf.json.JSONArray;
+
 public class ProductMessageReplyServiceImpl implements ProductMessageReplyService {
 
 	private ProductMessageReplyMapper productMessageReplyMapper;
@@ -18,6 +20,12 @@ public class ProductMessageReplyServiceImpl implements ProductMessageReplyServic
 	public List<ProductMessageReply> getProductMessageReplyById(int idProductMessageReply) {
 		List<ProductMessageReply> messageReplys = productMessageReplyMapper.getProductMessageReplyByMessageId(1);
 		return messageReplys;
+	}
+
+	@Override
+	public String messageReplyToJson(List<ProductMessageReply> messageReplys) {
+		JSONArray jsonArray = JSONArray.fromObject(messageReplys);
+		return jsonArray.toString();
 	}
 
 }

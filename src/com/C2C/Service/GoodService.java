@@ -35,4 +35,10 @@ public interface GoodService {
 	 */
 	boolean issueGood(int idUser, String goodName, String price, String goodPhoto, String goodIntroduce, String category);
 	
+	/**
+	 * 将一个商品转换为json格式
+	 * @param good 被转换的商品
+	 * @return 商品的json格式的字符串
+	 */
+	String goodToJson(Good good);
 }

@@ -11,11 +11,14 @@
 <resultMap type="com.C2C.Entity.ProductMessageReply" id="productMessageReply">
 	<id property="idProductMessageReply" column="idProductMessageReply"/>
 	<result property="messageId" column="messageId"/>
-	<result property="replyUserId" column="replyUserId"/>
-	<result property="beReplyUserId" column="beReplyUserId"/>
 	<result property="reply" column="reply"/>
-	<association property="replyUserName" select="com.C2C.Mapper.UserMapper.getUserNameByIduser" column="replyUserId"></association>
-	<association property="beReplyUserName" select="com.C2C.Mapper.UserMapper.getUserNameByIduser" column="beReplyUserId"></association>
+	<association property="replyUser" select="com.C2C.Mapper.UserMapper.getUserInfo" column="replyUserId"></association>
+	<association property="beReplyUser" select="com.C2C.Mapper.UserMapper.getUserInfo" column="beReplyUserId"></association>
 </resultMap>
+
+<!-- int getMessageReplyCount(int messageId); -->
+<select id="getMessageReplyCount" resultType="int">
+	SELECT COUNT(idProductMessageReply) FROM c2cdemo.product_message_reply WHERE messageId = #{messageId }
+</select>
 
 </mapper>

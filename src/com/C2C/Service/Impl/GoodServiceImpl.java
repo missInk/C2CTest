@@ -9,6 +9,8 @@ import com.C2C.Entity.Good;
 import com.C2C.Mapper.GoodMapper;
 import com.C2C.Service.GoodService;
 
+import net.sf.json.JSONObject;
+
 public class GoodServiceImpl implements GoodService {
 
 	private GoodMapper goodMapper;
@@ -64,6 +66,12 @@ public class GoodServiceImpl implements GoodService {
 		good.setCategory(category);
 		good.setIssueDate(issueDate);
 		return false;
+	}
+
+	@Override
+	public String goodToJson(Good good) {
+		JSONObject json = JSONObject.fromObject(good);
+		return json.toString();
 	}
 
 }

@@ -4,30 +4,12 @@ public class ProductMessageReply {
 
 	private int idProductMessageReply;
 	private int messageId;
-	private int replyUserId;
-	private int beReplyUserId;
+	private User replyUser;
+	private User beReplyUser;
 	private String reply;
-	private String replyUserName;
-	private String beReplyUserName;
 
 	public int getIdProductMessageReply() {
 		return idProductMessageReply;
-	}
-
-	public String getReplyUserName() {
-		return replyUserName;
-	}
-
-	public void setReplyUserName(String replyUserName) {
-		this.replyUserName = replyUserName;
-	}
-
-	public String getBeReplyUserName() {
-		return beReplyUserName;
-	}
-
-	public void setBeReplyUserName(String beReplyUserName) {
-		this.beReplyUserName = beReplyUserName;
 	}
 
 	public void setIdProductMessageReply(int idProductMessageReply) {
@@ -42,22 +24,6 @@ public class ProductMessageReply {
 		this.messageId = messageId;
 	}
 
-	public int getReplyUserId() {
-		return replyUserId;
-	}
-
-	public void setReplyUserId(int replyUserId) {
-		this.replyUserId = replyUserId;
-	}
-
-	public int getBeReplyUserId() {
-		return beReplyUserId;
-	}
-
-	public void setBeReplyUserId(int beReplyUserId) {
-		this.beReplyUserId = beReplyUserId;
-	}
-
 	public String getReply() {
 		return reply;
 	}
@@ -69,8 +35,6 @@ public class ProductMessageReply {
 	@Override
 	public String toString() {
 		return "ProductMessageReply [idProductMessageReply=" + idProductMessageReply + ", messageId=" + messageId
-				+ ", replyUserId=" + replyUserId + ", beReplyUserId=" + beReplyUserId + ", reply=" + reply
-				+ ", replyUserName=" + replyUserName + ", beReplyUserName=" + beReplyUserName + "]";
+				+ ", replyUser=" + replyUser + ", beReplyUser=" + beReplyUser + ", reply=" + reply + "]";
 	}
-
 }
