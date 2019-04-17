@@ -107,7 +107,16 @@ public class Test {
 	public static void testGoodService() {
 		ApplicationContext context = new ClassPathXmlApplicationContext("applicationContext.xml");
 		GoodService goodService = (GoodServiceImpl)context.getBean("goodServiceImpl");
-		goodService.issueGood(3, "test", "100", null, null, "其他");
+//		goodService.issueGood(3, "test", "100", null, null, "其他");
+//		Good good = goodService.getGoodByIdGoods(1);
+//		System.out.println(good);
+//		System.out.println(good.getLeaveMessages());
+		try {
+			System.out.println(goodService.getGoodsByPositionAndPage("南昌", "江西农业大学", 1));
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 	
 	public static void testCode() {
@@ -132,8 +141,8 @@ public class Test {
 //		testGoodLeaveMessageServiceImpl();
 //		testJson();
 //		testPayServiceImpl();
-		testUserServiceImpl();
-//		testGoodService();
+//		testUserServiceImpl();
+		testGoodService();
 //		testCode();
 //		testStyle();
 		/*String time = String.valueOf(System.currentTimeMillis());

@@ -9,9 +9,8 @@ public class User {
 	private String passWord;
 	private String sex;
 	private String school;
-	private Store store;
 	private String alipay;
-	
+
 	public String getSchool() {
 		return school;
 	}
@@ -26,14 +25,6 @@ public class User {
 
 	public void setAlipay(String alipay) {
 		this.alipay = alipay;
-	}
-
-	public Store getStore() {
-		return store;
-	}
-
-	public void setStore(Store store) {
-		this.store = store;
 	}
 
 	public int getIdUser() {
@@ -81,15 +72,13 @@ public class User {
 	}
 
 	public void setSex(String sex) {
-		this.sex = sex;
+		 this.sex = sex;
 	}
 
 	@Override
 	public String toString() {
 		return "User [idUser=" + idUser + ", headPortrait=" + headPortrait + ", email=" + email + ", userName="
-				+ userName + ", passWord=" + passWord + ", sex=" + sex + ", school=" + school + ", store=" + store
-				+ "]";
+				+ userName + ", passWord=" + passWord + ", sex=" + sex + ", school=" + school + "]";
 	}
 
-	
 }

@@ -8,19 +8,13 @@ import java.util.List;
 import com.C2C.Entity.Good;
 import com.C2C.Mapper.GoodMapper;
 import com.C2C.Service.GoodService;
-import com.C2C.Service.StoreService;
 
 public class GoodServiceImpl implements GoodService {
 
 	private GoodMapper goodMapper;
-	private StoreService storeService;
 
 	public void setGoodMapper(GoodMapper goodMapper) {
 		this.goodMapper = goodMapper;
-	}
-
-	public void setStoreService(StoreService storeService) {
-		this.storeService = storeService;
 	}
 
 	/**
@@ -69,9 +63,7 @@ public class GoodServiceImpl implements GoodService {
 		good.setGoodIntroduce(goodIntroduce);
 		good.setCategory(category);
 		good.setIssueDate(issueDate);
-		int idStore = storeService.getIdStoreByIdUser(idUser);
-		int result = goodMapper.issueGood(idStore, good);
-		return result == 1 ? true : false;
+		return false;
 	}
 
 }

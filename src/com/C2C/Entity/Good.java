@@ -16,14 +16,14 @@ public class Good {
 	 */
 	private String goodIntroduce;
 	private String goodPhoto;
-	private Store owner;
 	/**
 	 * 商品的状态
 	 * 1：已经售出
 	 * 2：未售出
 	 */
 	private String state;
-	private int buyMen;
+	private User sellMen;
+	private User buyMen;
 	private String issueDate;
 	private List<GoodLeaveMessage> leaveMessages;
 
@@ -43,28 +43,12 @@ public class Good {
 		this.leaveMessages = leaveMessages;
 	}
 
-	public int getBuyMen() {
-		return buyMen;
-	}
-
-	public void setBuyMen(int buyMen) {
-		this.buyMen = buyMen;
-	}
-
 	public String getState() {
 		return state;
 	}
 
 	public void setState(String state) {
 		this.state = state;
-	}
-
-	public Store getOwner() {
-		return owner;
-	}
-
-	public void setOwner(Store owner) {
-		this.owner = owner;
 	}
 
 	public String getGoodPhoto() {
@@ -116,10 +100,28 @@ public class Good {
 		this.goodIntroduce = goodIntroduce;
 	}
 
+	public User getSellMen() {
+		return sellMen;
+	}
+
+	public void setSellMen(User sellMen) {
+		this.sellMen = sellMen;
+	}
+
+	public User getBuyMen() {
+		return buyMen;
+	}
+
+	public void setBuyMen(User buyMen) {
+		this.buyMen = buyMen;
+	}
+
+	
+	
 	@Override
 	public String toString() {
 		return "Good [idGoods=" + idGoods + ", goodName=" + goodName + ", price=" + price + ", goodPhoto=" + goodPhoto
-				+ ", owner=" + owner + "]";
+				+ ", sellMen=" + sellMen + "]";
 	}
 
 	
