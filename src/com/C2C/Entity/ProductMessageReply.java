@@ -12,6 +12,22 @@ public class ProductMessageReply {
 		return idProductMessageReply;
 	}
 
+	public User getReplyUser() {
+		return replyUser;
+	}
+
+	public void setReplyUser(User replyUser) {
+		this.replyUser = replyUser;
+	}
+
+	public User getBeReplyUser() {
+		return beReplyUser;
+	}
+
+	public void setBeReplyUser(User beReplyUser) {
+		this.beReplyUser = beReplyUser;
+	}
+
 	public void setIdProductMessageReply(int idProductMessageReply) {
 		this.idProductMessageReply = idProductMessageReply;
 	}

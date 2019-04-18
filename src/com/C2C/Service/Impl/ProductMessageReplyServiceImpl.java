@@ -18,7 +18,7 @@ public class ProductMessageReplyServiceImpl implements ProductMessageReplyServic
 	
 	@Override
 	public List<ProductMessageReply> getProductMessageReplyById(int idProductMessageReply) {
-		List<ProductMessageReply> messageReplys = productMessageReplyMapper.getProductMessageReplyByMessageId(1);
+		List<ProductMessageReply> messageReplys = productMessageReplyMapper.getProductMessageReplyByMessageId(idProductMessageReply);
 		return messageReplys;
 	}
 

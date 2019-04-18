@@ -371,6 +371,7 @@
 }
 .reply_to_reply_val_wrap{
     text-align: left;
+    margin-bottom: 10px;
 }
 .reply_to_reply_wrap{
     text-align: right;

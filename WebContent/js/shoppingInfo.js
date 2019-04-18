@@ -51,7 +51,7 @@ function getLeaveMessage(idGoods) {
 	                    <div class="reply">
 	                        <div class="reply_tail">
 	                            <div class="reply_active">
-	                                <a href="" class="show_reply" style="display: block;" onclick="shoeReply(${value.idgoodLeaveMessage})">回复(${value.replyCount})</a>
+	                                <a href="javaScript:void(0);" class="show_reply" style="display: block;" onclick="shoeReply(${value.idgoodLeaveMessage})">回复(${value.replyCount})</a>
 	                                <span class="fold_reply" style="display: none">收起回复</span>
 	                            </div>
 	                            <div class="tail-wrap">
@@ -60,6 +60,8 @@ function getLeaveMessage(idGoods) {
 	                            </div>
 	                        </div>
 	                        <!--此处插入评论-->
+							<div class="reply_wrap" id="reply_${value.idgoodLeaveMessage}">
+							</div>
 	                    </div>
 	                </div>
 	            </div>
@@ -74,45 +76,63 @@ function getLeaveMessage(idGoods) {
 }
 
 function shoeReply(messageId){
-	
+	var xmlhttp;
+	if (window.XMLHttpRequest){
+		xmlhttp=new XMLHttpRequest();
+	}else{
+		 xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
+	}
+	xmlhttp.onreadystatechange=function()
+	{
+		if (xmlhttp.readyState==4 && xmlhttp.status==200)
+		{
+			var jsonData = JSON.parse(xmlhttp.responseText);
+			console.log(jsonData);
+			let show_tag = 
+			`
+			<div class="reply_content">
+		        <ul class="reply_ul">
+		    `;
+			show_tag += jsonData.map(value =>
+		    `
+		            <li class="reply_li">
+		                <div class="reply_user_img">
+		                    <img src=${value.replyUser.headPortrait }>
+		                </div>
+		                <div class="reply_content_value">
+		                    <span class="reply_username">${value.replyUser.userName }</span>
+		                    <span class="reply_text">${value.reply }</span>
+		                    <div class="reply_time">
+		                        <span>2019-4-16&nbsp;23:07</span>
+		                        <a class="reply_to_reply" href="javascript:void(0);">回复</a>
+		                    </div>
+		                </div>
+		            </li>
+		    `
+			).join("");
+			show_tag += 
+			`
+		            <li class="reply_li send_reply">
+		                <a class="send_reply_a" href="javascript:void(0);">我也说一句</a>
+		                <p>&nbsp;</p>
+		            </li>
+		            <li class="reply_li reply_to_reply_wrap">
+		                <div class="reply_to_reply_val_wrap">
+		                    <textarea class="reply_to_reply_val"></textarea>
+		                </div>
+		                <div class="send_r_r_val_wrap">
+		                    <a href="javascript:void(0);" class="send_r_r_val">发表</a>
+		                </div>
+		            </li>
+		        </ul>
+		    </div>
+			`;
+			document.getElementById("reply_"+messageId).innerHTML = show_tag;
+		}
+	}
+	xmlhttp.open("GET","ProductMessageReplyServlet?method=getReply&messageId="+messageId,true);
+	xmlhttp.send();
 }
-
-/*
- 
- <div class="reply_wrap">
-    <div class="reply_content">
-        <ul class="reply_ul">
-            <li class="reply_li">
-                <div class="reply_user_img">
-                    <img src="headPortrait/head.jpg">
-                </div>
-                <div class="reply_content_value">
-                    <span class="reply_username">XXX:</span>
-                    <span class="reply_text">这是一条测试用的回复</span>
-                    <div class="reply_time">
-                        <span>2019-4-16&nbsp;23:07</span>
-                        <a class="reply_to_reply" href="javascript:void(0);">回复</a>
-                    </div>
-                </div>
-            </li>
-            
-            <li class="reply_li send_reply">
-                <a class="send_reply_a" href="javascript:void(0);">我也说一句</a>
-                <p>&nbsp;</p>
-            </li>
-            <li class="reply_li reply_to_reply_wrap">
-                <div class="reply_to_reply_val_wrap">
-                    <textarea class="reply_to_reply_val"></textarea>
-                </div>
-                <div class="send_r_r_val_wrap">
-                    <a href="javascript:void(0);" class="send_r_r_val">发表</a>
-                </div>
-            </li>
-        </ul>
-    </div>
-</div>
-  
- */
 
 
 

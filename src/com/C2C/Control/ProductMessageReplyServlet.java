@@ -21,7 +21,7 @@ public class ProductMessageReplyServlet extends BaseServlet {
 		messageReplyService = (ProductMessageReplyService)getApplicationcontext().getBean("productMessageReplyServiceImpl");
 	}
 	
-	public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	public void getReply(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		int messageId = Integer.parseInt(request.getParameter("messageId"));
 		List<ProductMessageReply> messageReplys = messageReplyService.getProductMessageReplyById(messageId);
 		String messageReplysJson = messageReplyService.messageReplyToJson(messageReplys);
