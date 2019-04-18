@@ -27,4 +27,20 @@ public class ProductMessageReplyServlet extends BaseServlet {
 		String messageReplysJson = messageReplyService.messageReplyToJson(messageReplys);
 		response.getWriter().print(messageReplysJson);
 	}
+	
+	public void sendReply(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		int messageId = Integer.parseInt(request.getParameter("messageId"));
+		int replyUserId = Integer.parseInt(request.getParameter("replyUserId"));
+		int beReplyUserId = Integer.parseInt(request.getParameter("beReplyUserId"));
+		String reply = request.getParameter("reply");
+		boolean result = messageReplyService.sendReply(messageId, replyUserId, beReplyUserId, reply);
+		response.getWriter().print(result);
+	}
+	
+	public void getReplyCount(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		int messageId = Integer.parseInt(request.getParameter("messageId"));
+		int replyCount = messageReplyService.getReplyCount(messageId);
+		response.getWriter().print(replyCount);
+	}
+	
 }

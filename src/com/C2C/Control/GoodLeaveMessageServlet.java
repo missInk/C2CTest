@@ -27,4 +27,13 @@ public class GoodLeaveMessageServlet extends BaseServlet {
 		String leaveMessagesJson = goodLeaveMessageService.leaveMessageToJson(leaveMessages);
 		response.getWriter().print(leaveMessagesJson);
 	}
+	
+	public void sendLeaveMessage(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		int goodId = Integer.parseInt(request.getParameter("goodId"));
+		int userId = Integer.parseInt(request.getParameter("userId"));
+		String message = request.getParameter("message");
+		boolean result = goodLeaveMessageService.sendLeaveMessage(goodId, userId, message);
+		response.getWriter().print(result);
+	}
+	
 }

@@ -6,26 +6,26 @@
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 <title>商品信息展示</title>
 	<!-- setStyle start -->
-   <link rel="stylesheet" href="css/tit-tail.css">
-   <link rel="stylesheet" href="css/commons.css">
-   <link rel="stylesheet" href="css/shopping-info.css">
+   <link rel="stylesheet" href="${pageContext.request.contextPath }/css/tit-tail.css">
+   <link rel="stylesheet" href="${pageContext.request.contextPath }/css/commons.css">
+   <link rel="stylesheet" href="${pageContext.request.contextPath }/css/shopping-info.css">
    <!-- setStyle end -->
-   <script src="js/shoppingInfo.js"></script>
+   <script src="${pageContext.request.contextPath }/js/shoppingInfo.js"></script>
 </head>
 <body>
 <!-- 导航栏开始 -->
 <div class="wrap">
     <div class="wrap-box">
         <a href="">
-            <img class="logo-header" src="images/logo.png" alt="赚赚">
+            <img class="logo-header" src="${pageContext.request.contextPath }/images/logo.png" alt="赚赚">
         </a>
         <div class="location-header">
             <div class="location-header-box">
-                <img class="location-header-img" src="images/positionLogo.png" alt="定位">
+                <img class="location-header-img" src="${pageContext.request.contextPath }/images/positionLogo.png" alt="定位">
                 <span>南昌</span>
-                <img class="location-header-img" src="images/lowPositionLogo.png" alt="箭头">
+                <img class="location-header-img" src="${pageContext.request.contextPath }/images/lowPositionLogo.png" alt="箭头">
                 <span>&nbsp;江西农业大学</span>
-                <img class="location-header-img" src="images/lowPositionLogo.png" alt="箭头">
+                <img class="location-header-img" src="${pageContext.request.contextPath }/images/lowPositionLogo.png" alt="箭头">
             </div>
         </div>
         <div class="recommend-header">
@@ -41,12 +41,12 @@
                 <span>我的消息</span>
             </div>
             <div class="right-header-box">
-                <img class="right-header-img" src="images/user.png">
-                <span>登录</span>
+                <img class="right-header-img" src="${pageContext.request.contextPath }/images/user.png">
+                <span onclick="">登录</span>
             </div>
         </div>
         <div class="search-header">
-            <img class="search-header-img" src="images/search.png" alt="搜索">
+            <img class="search-header-img" src="${pageContext.request.contextPath }/images/search.png" alt="搜索">
             <input class="search-header-input" placeholder="输入商品名称搜索商品">
             <span class="search-header-button">搜索</span>
         </div>
@@ -98,9 +98,9 @@
                         <div id="leaveMessage"></div>
                         <div class="sendLessMessage">
                             <div class="sendLessMessageTit">发表留言</div>
-                            <textarea class="sendMessageValue"></textarea>
+                            <textarea class="sendMessageValue" id="sendMessageValue"></textarea>
                             <div class="sendBtnContent">
-                                <a class="sendLessMessageBtn" href="#">发送留言</a>
+                                <a class="sendLessMessageBtn" href="#" onclick="sendLeaveMessage('${good.idGoods }','${user.idUser }')">发送留言</a>
                             </div>
                         </div>
                     </div>

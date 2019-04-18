@@ -7,6 +7,20 @@ public class ProductMessageReply {
 	private User replyUser;
 	private User beReplyUser;
 	private String reply;
+	private String replyDate;
+
+	public ProductMessageReply() {
+		super();
+	}
+
+	public ProductMessageReply(int messageId, User replyUser, User beReplyUser, String reply, String replyDate) {
+		super();
+		this.messageId = messageId;
+		this.replyUser = replyUser;
+		this.beReplyUser = beReplyUser;
+		this.reply = reply;
+		this.replyDate = replyDate;
+	}
 
 	public int getIdProductMessageReply() {
 		return idProductMessageReply;
@@ -46,6 +60,14 @@ public class ProductMessageReply {
 
 	public void setReply(String reply) {
 		this.reply = reply;
+	}
+
+	public String getReplyDate() {
+		return replyDate;
+	}
+
+	public void setReplyDate(String replyDate) {
+		this.replyDate = replyDate;
 	}
 
 	@Override

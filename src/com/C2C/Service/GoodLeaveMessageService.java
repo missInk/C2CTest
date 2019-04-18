@@ -20,4 +20,13 @@ public interface GoodLeaveMessageService {
 	 */
 	String leaveMessageToJson(List<GoodLeaveMessage> leaveMessages);
 	
+	/**
+	 * 发送一留言
+	 * @param goodId 被留言的商品的id
+	 * @param userId 留下该条留言的用户的id
+	 * @param message 留言的内容
+	 * @return 发送成功：true 发送失败：false
+	 */
+	boolean sendLeaveMessage(int goodId, int userId, String message);
+	
 }

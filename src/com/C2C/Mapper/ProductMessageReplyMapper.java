@@ -2,6 +2,8 @@ package com.C2C.Mapper;
 
 import java.util.List;
 
+import org.apache.ibatis.annotations.Param;
+
 import com.C2C.Entity.ProductMessageReply;
 
 public interface ProductMessageReplyMapper {
@@ -19,5 +21,12 @@ public interface ProductMessageReplyMapper {
 	 * @return 回复的数量
 	 */
 	int getMessageReplyCount(int messageId);
+	
+	/**
+	 * 发送一条留言的回复
+	 * @param messageReply 一条留言回复的实体
+	 * @return 发送成功true 发送失败：false
+	 */
+	boolean sendReply(@Param("messageReply")ProductMessageReply messageReply);
 	
 }

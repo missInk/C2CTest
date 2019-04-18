@@ -11,6 +11,13 @@ public class User {
 	private String school;
 	private String alipay;
 
+	public User() {
+	}
+
+	public User(int idUser) {
+		this.idUser = idUser;
+	}
+
 	public String getSchool() {
 		return school;
 	}

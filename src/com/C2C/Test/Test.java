@@ -63,15 +63,17 @@ public class Test {
 	public static void testProductMessageReplyServiceImpl() throws IOException {
 		ApplicationContext context = new ClassPathXmlApplicationContext("applicationContext.xml");
 		ProductMessageReplyService productMessageReplyService = (ProductMessageReplyServiceImpl)context.getBean("productMessageReplyServiceImpl");
-		List<ProductMessageReply> replys = productMessageReplyService.getProductMessageReplyById(1);
-		printElements(replys);
+//		List<ProductMessageReply> replys = productMessageReplyService.getProductMessageReplyById(1);
+//		printElements(replys);
+		productMessageReplyService.sendReply(2, 2, 1, "这是条测试用的回复");
 	}
 	
 	public static void testGoodLeaveMessageServiceImpl() throws IOException {
 		ApplicationContext context = new ClassPathXmlApplicationContext("applicationContext.xml");
 		GoodLeaveMessageService leaveMessageService = (GoodLeaveMessageServiceImpl)context.getBean("goodLeaveMessageServiceImpl");
-		List<GoodLeaveMessage> leaveMessages = leaveMessageService.getGoodLeaveMessageByGoodId(1);
-		printElements(leaveMessages);
+//		List<GoodLeaveMessage> leaveMessages = leaveMessageService.getGoodLeaveMessageByGoodId(1);
+//		printElements(leaveMessages);
+		leaveMessageService.sendLeaveMessage(1, 6, "你好5");
 	}
 	
 	public static void testJson() {
@@ -137,12 +139,12 @@ public class Test {
 	public static void main(String[] args) throws IOException{
 //		testSearchGood();
 //		testPosition();
-//		testProductMessageReplyServiceImpl();
+		testProductMessageReplyServiceImpl();
 //		testGoodLeaveMessageServiceImpl();
 //		testJson();
 //		testPayServiceImpl();
 //		testUserServiceImpl();
-		testGoodService();
+//		testGoodService();
 //		testCode();
 //		testStyle();
 		/*String time = String.valueOf(System.currentTimeMillis());

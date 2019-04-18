@@ -20,4 +20,21 @@ public interface ProductMessageReplyService {
 	 */
 	String messageReplyToJson(List<ProductMessageReply> messageReplys);
 	
+	/**
+	 * 发送一条留言的回复
+	 * @param messageId 留言的id
+	 * @param replyUserId 回复人的id
+	 * @param beReplyUserId 被回复的人的id
+	 * @param reply 回复的内容
+	 * @return 发送成功true 发送失败：false
+	 */
+	boolean sendReply(int messageId, int replyUserId, int beReplyUserId, String reply);
+	
+	/**
+	 * 通过留言的id获得该条留言的回复数目
+	 * @param messageId 留言的id
+	 * @return 该条留言的回复数目
+	 */
+	int getReplyCount(int messageId);
+	
 }
