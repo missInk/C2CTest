@@ -153,5 +153,22 @@ public class UserServlet extends BaseServlet {
 		}
 		return false;
 	}
+	
+	public String loginOut(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
+		request.getSession().removeAttribute("user");
+		Cookie[] cookies = request.getCookies();
+		Cookie killCookie = null;
+		for (Cookie c : cookies) {
+            String name = c.getName();
+            if ("autoLogin".equals(name)) {
+            	killCookie = c;
+            }
+        }
+		if(killCookie != null) {
+			killCookie.setMaxAge(0);
+			response.addCookie(killCookie);
+		}
+		return "login.jsp";
+	}
 
 }

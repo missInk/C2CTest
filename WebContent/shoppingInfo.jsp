@@ -1,8 +1,20 @@
 <%@ page language="java" contentType="text/html; charset=utf-8"
     pageEncoding="utf-8"%>
+
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
+
+<script type="text/javascript">
+<%
+if(request.getAttribute("good") == null){
+%>
+alert("请通过正常渠道进入该界面");
+<%
+}
+%>    
+</script>
+
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 <title>商品信息展示</title>
 	<!-- setStyle start -->
@@ -11,48 +23,10 @@
    <link rel="stylesheet" href="${pageContext.request.contextPath }/css/shopping-info.css">
    <!-- setStyle end -->
    <script src="${pageContext.request.contextPath }/js/shoppingInfo.js"></script>
+   <script src="${pageContext.request.contextPath }/js/tit.js"></script>
 </head>
 <body>
-<!-- 导航栏开始 -->
-<div class="wrap">
-    <div class="wrap-box">
-        <a href="">
-            <img class="logo-header" src="${pageContext.request.contextPath }/images/logo.png" alt="赚赚">
-        </a>
-        <div class="location-header">
-            <div class="location-header-box">
-                <img class="location-header-img" src="${pageContext.request.contextPath }/images/positionLogo.png" alt="定位">
-                <span>南昌</span>
-                <img class="location-header-img" src="${pageContext.request.contextPath }/images/lowPositionLogo.png" alt="箭头">
-                <span>&nbsp;江西农业大学</span>
-                <img class="location-header-img" src="${pageContext.request.contextPath }/images/lowPositionLogo.png" alt="箭头">
-            </div>
-        </div>
-        <div class="recommend-header">
-            <div class="recommend-header-box">
-                <a href="#" class="recommend-header-a">首页</a>
-            </div>
-        </div>
-        <div class="right-header">
-            <div class="right-header-box">
-                <span>我的交易</span>
-            </div>
-            <div class="right-header-box">
-                <span>我的消息</span>
-            </div>
-            <div class="right-header-box">
-                <img class="right-header-img" src="${pageContext.request.contextPath }/images/user.png">
-                <span onclick="">登录</span>
-            </div>
-        </div>
-        <div class="search-header">
-            <img class="search-header-img" src="${pageContext.request.contextPath }/images/search.png" alt="搜索">
-            <input class="search-header-input" placeholder="输入商品名称搜索商品">
-            <span class="search-header-button">搜索</span>
-        </div>
-    </div>
-</div>
-<!-- 导航栏结束 -->
+<%@include file="tit.jsp" %>
 
 <!-- 商品信息开始 -->
 <div class="shopping">
@@ -66,7 +40,7 @@
                 <div class="shopping-info-category">商品类别：${good.category }</div>
                 <div class="shopping-info-place">交易范围：${position.positionName }-${position.range }</div>
                 <div class="shopping-info-price">商品价格：<span style="color: red;">￥${good.price }</span></div>
-                <div class="perform-order-buy-btn">我想要</div>
+                <div class="perform-order-buy-btn" onclick="javaScript:alert('开发ing，别点了')">我想要</div>
             </div>
         </div>
     </div>
@@ -112,12 +86,6 @@
 </div>
 <!-- 商品信息结束 -->
 
-<!-- 尾部开始 -->
-<div class="footer">
-    <div class="footer-container">
-        <span style="display: inline-block; margin-top: 10px;">@版权所有</span>
-    </div>
-</div>
-<!-- 尾部结束 -->
+<%@include file="tail.jsp" %>
 </body>
 </html>

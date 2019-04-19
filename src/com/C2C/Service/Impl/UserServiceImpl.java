@@ -39,7 +39,7 @@ public class UserServiceImpl implements UserService {
 	public Cookie newCookie(String email, String passWord) {
 		Cookie cookie = new Cookie("autoLogin",email+"&"+passWord);
 		cookie.setMaxAge(360000);
-		cookie.setPath("/C2CTest/index.jsp");
+		cookie.setPath("/C2CTest");
 		return cookie;
 	}
 

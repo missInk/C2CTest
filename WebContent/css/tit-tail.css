@@ -1,6 +1,6 @@
-/*头部导航栏样式开始*/
+/*澶撮儴瀵艰埅鏍忔牱寮忓紑濮�*/
 .wrap-box{
-    width: 1100px;
+    width: 1200px;
     height: 100%;
     margin: 0 auto;
     position: relative;
@@ -59,6 +59,10 @@
     color: #2D2D2D;
     display: inline-block;
     vertical-align: middle;
+    max-width: 90px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
 }
 .right-header-img{
     width: 26px;
@@ -124,8 +128,8 @@
     position: absolute;
     left: 253px;
 }
-/*头部导航栏样式开始*/
-/*尾部导航栏样式开始*/
+/*澶撮儴瀵艰埅鏍忔牱寮忓紑濮�*/
+/*灏鹃儴瀵艰埅鏍忔牱寮忓紑濮�*/
 .footer{
     background-color: #a5a49f;
     width: 100%;
@@ -169,4 +173,4 @@
 .main-container{
     margin-bottom: 30px;
 }
-/*尾部导航栏样式结束*/
+/*灏鹃儴瀵艰埅鏍忔牱寮忕粨鏉�*/
