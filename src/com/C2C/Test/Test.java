@@ -103,7 +103,7 @@ public class Test {
 //		System.out.println(userService.checkUser(email, passWord));
 //		System.out.println(userService.regist(email,"ÀîËÄ", passWord,null));
 //		System.out.println(userService.getUserByAlipay("2088722235394212"));
-		System.out.println(userService.binding(email, passWord, alipay));
+		System.out.println(userService.getUserInfoByIdUser(1));
 	}
 	
 	public static void testGoodService() {
@@ -139,11 +139,11 @@ public class Test {
 	public static void main(String[] args) throws IOException{
 //		testSearchGood();
 //		testPosition();
-		testProductMessageReplyServiceImpl();
+//		testProductMessageReplyServiceImpl();
 //		testGoodLeaveMessageServiceImpl();
 //		testJson();
 //		testPayServiceImpl();
-//		testUserServiceImpl();
+		testUserServiceImpl();
 //		testGoodService();
 //		testCode();
 //		testStyle();

@@ -139,6 +139,11 @@ function showReply(messageId){
 }
 
 function sendLeaveMessage(goodId, userId){
+	if(goodId == "" || userId == ""){
+		alert("参数不合法");
+		return;
+	}
+	
 	var message = document.getElementById("sendMessageValue").value;
 	document.getElementById("sendMessageValue").value = "";
 	var xmlhttp;

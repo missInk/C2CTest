@@ -38,7 +38,6 @@ $(function(){
 </script>
 </head>
 <body>
-${alipay}
 <h1>绑定账号</h1>
 <div id="bindingError"></div>
 被绑定账号的邮箱：<input type="text" id="email"><div id="emailError"></div><br>

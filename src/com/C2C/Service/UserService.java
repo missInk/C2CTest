@@ -85,4 +85,11 @@ public interface UserService {
 	 */
 	String getHeadPortrait(String email);
 	
+	/**
+	 * 通过用户的id获得用户的信息（用户id，用户名，头像）
+	 * @param idUser 用户的id
+	 * @return 用户的信息（用户id，用户名，头像）
+	 */
+	User getUserInfoByIdUser(int idUser);
+	
 }

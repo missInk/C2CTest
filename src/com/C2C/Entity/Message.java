@@ -3,19 +3,18 @@ package com.C2C.Entity;
 public class Message {
 
 	private int idMessage;
-	private int getter;
-	private int sender;
+	private User getter;
+	private User sender;
 	private String message;
 	private int state;
 	private String date;
-	private int goodId;
+	private Good good;
 
-	public int getGoodId() {
-		return goodId;
-	}
-
-	public void setGoodId(int goodId) {
-		this.goodId = goodId;
+	public Message(User getter, User sender, Good good) {
+		super();
+		this.getter = getter;
+		this.sender = sender;
+		this.good = good;
 	}
 
 	public int getIdMessage() {
@@ -26,19 +25,19 @@ public class Message {
 		this.idMessage = idMessage;
 	}
 
-	public int getGetter() {
+	public User getGetter() {
 		return getter;
 	}
 
-	public void setGetter(int getter) {
+	public void setGetter(User getter) {
 		this.getter = getter;
 	}
 
-	public int getSender() {
+	public User getSender() {
 		return sender;
 	}
 
-	public void setSender(int sender) {
+	public void setSender(User sender) {
 		this.sender = sender;
 	}
 
@@ -66,10 +65,18 @@ public class Message {
 		this.date = date;
 	}
 
+	public Good getGood() {
+		return good;
+	}
+
+	public void setGood(Good good) {
+		this.good = good;
+	}
+
 	@Override
 	public String toString() {
 		return "Message [idMessage=" + idMessage + ", getter=" + getter + ", sender=" + sender + ", message=" + message
-				+ ", state=" + state + ", date=" + date + "]";
+				+ ", state=" + state + ", date=" + date + ", good=" + good + "]";
 	}
 
 }

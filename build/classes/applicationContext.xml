@@ -81,4 +81,8 @@
 		<property name="verificationCodeMapper" ref="verificationCodeMapper"></property>
 	</bean>
 	
+	<bean id="messageServiceImpl" class="com.C2C.Service.Impl.MessageServiceImpl">
+		<property name="messageMapper" ref="messageMapper"></property>
+	</bean>
+	
 </beans>

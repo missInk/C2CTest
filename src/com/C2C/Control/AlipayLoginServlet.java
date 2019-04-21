@@ -19,9 +19,15 @@ import com.alipay.api.response.AlipayUserInfoShareResponse;
 @WebServlet("/AlipayLoginServlet")
 public class AlipayLoginServlet extends BaseServlet {
 	private static final long serialVersionUID = 1L;
-       
+	private AlipayClient alipayClient = null;   
+	
+	@Override
+	public void init() throws ServletException {
+		super.init();
+		alipayClient = new DefaultAlipayClient(AlipayConfig.gatewayUrl, AlipayConfig.app_id, AlipayConfig.merchant_private_key, "json", AlipayConfig.charset, AlipayConfig.alipay_public_key, AlipayConfig.sign_type);
+	}
+	
 	public void getAlipayId(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		AlipayClient alipayClient = new DefaultAlipayClient(AlipayConfig.gatewayUrl, AlipayConfig.app_id, AlipayConfig.merchant_private_key, "json", AlipayConfig.charset, AlipayConfig.alipay_public_key, AlipayConfig.sign_type);
 		AlipayUserInfoShareRequest req = new AlipayUserInfoShareRequest();
 	    String token = (String)request.getAttribute("tokn");
 	    AlipayUserInfoShareResponse resp = null;

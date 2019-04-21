@@ -18,7 +18,7 @@ public interface UserMapper {
 	 * @param idUser 用户id
 	 * @return 用户的简单信息（用户名，用户头像）
 	 */
-	/*User getUserInfo(int idUser);*/
+	User getUserInfo(int idUser);
 	
 	/**
 	 * 检查用户是否合法

@@ -5,16 +5,15 @@
 <html>
 <head>
 
-<script type="text/javascript">
 <%
 if(request.getAttribute("good") == null){
 %>
-alert("请通过正常渠道进入该界面");
+<script type="text/javascript">
+	alert("请通过正常渠道进入该界面");
+</script>
 <%
 }
 %>    
-</script>
-
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 <title>商品信息展示</title>
 	<!-- setStyle start -->
@@ -41,6 +40,7 @@ alert("请通过正常渠道进入该界面");
                 <div class="shopping-info-place">交易范围：${position.positionName }-${position.range }</div>
                 <div class="shopping-info-price">商品价格：<span style="color: red;">￥${good.price }</span></div>
                 <div class="perform-order-buy-btn" onclick="javaScript:alert('开发ing，别点了')">我想要</div>
+            	<div class="perform-order-buy-btn" onclick="javaScript:alert('开发ing，别点了${good.idGoods},${good.sellMen.idUser }')">联系店家</div>
             </div>
         </div>
     </div>

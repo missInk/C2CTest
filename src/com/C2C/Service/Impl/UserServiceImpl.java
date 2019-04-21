@@ -97,6 +97,11 @@ public class UserServiceImpl implements UserService {
 		return userMapper.getHeadPortrait(email);
 	}
 
+	@Override
+	public User getUserInfoByIdUser(int idUser) {
+		return userMapper.getUserInfo(idUser);
+	}
+
 	
 
 }
