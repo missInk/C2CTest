@@ -40,7 +40,7 @@ if(request.getAttribute("good") == null){
                 <div class="shopping-info-place">交易范围：${position.positionName }-${position.range }</div>
                 <div class="shopping-info-price">商品价格：<span style="color: red;">￥${good.price }</span></div>
                 <div class="perform-order-buy-btn" onclick="javaScript:alert('开发ing，别点了')">我想要</div>
-            	<div class="perform-order-buy-btn" onclick="javaScript:alert('开发ing，别点了${good.idGoods},${good.sellMen.idUser }')">联系店家</div>
+            	<div class="perform-order-buy-btn" onclick="goChat(${good.sellMen.idUser },${good.idGoods})">联系店家</div>
             </div>
         </div>
     </div>

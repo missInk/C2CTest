@@ -24,6 +24,15 @@ public class Good {
 	private User buyMen;
 	private String issueDate;
 
+	public Good(int idGoods) {
+		super();
+		this.idGoods = idGoods;
+	}
+
+	public Good() {
+		super();
+	}
+
 	public String getIssueDate() {
 		return issueDate;
 	}

@@ -211,3 +211,11 @@ function setReplyCount(messageId){
 	xmlhttp.open("POST","ProductMessageReplyServlet?method=getReplyCount&messageId="+messageId,true);
 	xmlhttp.send();	
 }
+
+function goChat(getterId, goodId){
+	if(getterId != "" && goodId != ""){
+		window.location.href = "http://li2453671898.yicp.io/C2CTest/ChatServlet?method=getChatInfo&goodId="+goodId+"&getterId="+"getterId";
+	}else{
+		alert("参数不完整，无法连接到商家");
+	}
+}

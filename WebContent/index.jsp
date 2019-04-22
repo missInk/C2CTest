@@ -28,7 +28,7 @@
        </div>
     </div>
     <%
-    /* if(session.getAttribute("user") != null){
+    if(session.getAttribute("user") != null){
     	User user = (User)session.getAttribute("user");
     	out.println(" 用户ID："+user.getIdUser());
     	out.println(" 用户名："+user.getUserName());
@@ -36,7 +36,7 @@
     	out.println(" 学校："+user.getSchool());
     	out.println(" 头像："+user.getHeadPortrait());
     }
-    if(session.getAttribute("position") != null){
+    /* if(session.getAttribute("position") != null){
        	Position position = (Position)session.getAttribute("position");
        	out.println(position.getPositionName() +":" +position.getRange());
     }

@@ -7,13 +7,36 @@ public class Message {
 	private User sender;
 	private String message;
 	private int state;
-	private String date;
+	private String sendTime;
 	private Good good;
+
+	public Message() {
+		super();
+	}
 
 	public Message(User getter, User sender, Good good) {
 		super();
 		this.getter = getter;
 		this.sender = sender;
+		this.good = good;
+	}
+
+	public Message(User getter, User sender, String message, int state, Good good) {
+		super();
+		this.getter = getter;
+		this.sender = sender;
+		this.message = message;
+		this.state = state;
+		this.good = good;
+	}
+
+	public Message(User getter, User sender, String message, int state, String sendTime, Good good) {
+		super();
+		this.getter = getter;
+		this.sender = sender;
+		this.message = message;
+		this.state = state;
+		this.sendTime = sendTime;
 		this.good = good;
 	}
 
@@ -57,12 +80,12 @@ public class Message {
 		this.state = state;
 	}
 
-	public String getDate() {
-		return date;
+	public String getSendTime() {
+		return sendTime;
 	}
 
-	public void setDate(String date) {
-		this.date = date;
+	public void setSendTime(String sendTime) {
+		this.sendTime = sendTime;
 	}
 
 	public Good getGood() {
@@ -76,7 +99,7 @@ public class Message {
 	@Override
 	public String toString() {
 		return "Message [idMessage=" + idMessage + ", getter=" + getter + ", sender=" + sender + ", message=" + message
-				+ ", state=" + state + ", date=" + date + ", good=" + good + "]";
+				+ ", state=" + state + ", sendTime=" + sendTime + ", good=" + good + "]";
 	}
 
 }

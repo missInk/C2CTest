@@ -1,6 +1,6 @@
 package com.C2C.Entity;
 
-public class User {
+public class User implements Cloneable{
 
 	private int idUser;
 	private String headPortrait;
@@ -11,6 +11,11 @@ public class User {
 	private String school;
 	private String alipay;
 
+	@Override
+	public User clone() throws CloneNotSupportedException {
+		return (User)super.clone();
+	}
+	
 	public User() {
 	}
 

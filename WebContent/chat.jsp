@@ -7,9 +7,9 @@
 <%
 	if(request.getAttribute("chatMessage") == null){
 %>
-	<script type="text/javascript">
-		alert("初始化聊天界面失败，无法获得完整的聊天信息参数");
-	</script>	
+<script type="text/javascript">
+	alert("初始化聊天界面失败，无法获得完整的聊天信息参数");
+</script>	
 <%
 	}
 %>
@@ -19,6 +19,8 @@
 <link rel="stylesheet" href="${pageContext.request.contextPath }/css/commons.css">
 <link rel="stylesheet" href="${pageContext.request.contextPath }/css/chat.css">
 <!-- setStyle end -->
+<script src="${pageContext.request.contextPath }/js/tit.js"></script>
+<script src="${pageContext.request.contextPath }/js/chat.js"></script>
 <title>聊天界面</title>
 </head>
 <body>
@@ -62,29 +64,16 @@
                             <span>点击查看历史消息</span>
                         </div>
                     </div>
-                    <div class="senderMsg">
-                        <div class="senderMsg-wrap">
-                            <div class="senderMsg-box">
-                                <div class="senderMsg-box-val">这是一条测试用的发言</div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="getterMsg">
-                        <div class="getterMsg-wrap">
-                            <div class="getterMsg-box">
-                                <div class="getterMsg-box-val">这是一条测试用的发言</div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+                    <div id="messageWrap"></div>
+                   </div>
                 <!-- 消息记录面板结束 -->
                 <div class="chat-footer">
                     <!-- 发送消息开始 -->
                     <div class="send-message">
                         <div class="send-message-val-box">
-                            <textarea class="send-message-val"></textarea>
+                            <textarea class="send-message-val" id="msg"></textarea>
                         </div>
-                        <button class="send-message-btn">发送</button>
+                        <button class="send-message-btn" onclick="sendMsg()">发送</button>
                     </div>
                     <!-- 发送消息结束 -->
                 </div>
@@ -96,6 +85,14 @@
 <!-- 聊天界面结束 -->
 
 <%@include file="tail.jsp" %>
+
+<script type="text/javascript">
+var ws;
+var getterId = ${chatMessage.getter.idUser };
+var senderId = ${chatMessage.sender.idUser };
+var goodId = ${chatMessage.good.idGoods };
+getSocket(getterId, senderId, goodId);
+</script>
 
 </body>
 </html>

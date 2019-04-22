@@ -14,7 +14,10 @@ import javax.websocket.Session;
 import javax.websocket.server.PathParam;
 import javax.websocket.server.ServerEndpoint;
 
+import org.springframework.context.support.ClassPathXmlApplicationContext;
+
 import com.C2C.Entity.Message;
+import com.C2C.Service.MessageService;
 
 import net.sf.json.JSONObject;
 
@@ -22,6 +25,7 @@ import net.sf.json.JSONObject;
 public class ChatSocket {
 
 	private static int onlineCount = 0;  
+	private static MessageService messageService = (MessageService)new ClassPathXmlApplicationContext("applicationContext.xml").getBean("messageServiceImpl"); 
     private static Map<Integer, ChatSocket> clients = new ConcurrentHashMap<Integer, ChatSocket>();  
     private Session session;  
     private Integer idUser;
@@ -51,7 +55,7 @@ public class ChatSocket {
 		Message message = (Message)JSONObject.toBean(jsonTo, Message.class);
 		Date date = new Date();
 		SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
-		message.setDate(dateFormat.format(date));
+		message.setSendTime(dateFormat.format(date));
 		sendMessageTo(message);
     }  
   
@@ -60,14 +64,15 @@ public class ChatSocket {
         error.printStackTrace();  
     }  
   
-    public void sendMessageTo(Message message) throws IOException { 
+    public void sendMessageTo(Message msg) throws IOException { 
     	int state = -1;
-    	ChatSocket getterSocket = clients.get(message.getGetter());
+		ChatSocket getterSocket = clients.get(msg.getGetter().getIdUser());
     	if(getterSocket != null) {
-    		getterSocket.session.getBasicRemote().sendText(message.getMessage());
+    		getterSocket.session.getBasicRemote().sendText(msg.getMessage());
         	state = 1;
     	}
-        message.setState(state);
+        msg.setState(state);
+        messageService.addMessage(msg);
     }  
       
     public static synchronized int getOnlineCount() {  

@@ -45,9 +45,16 @@ function subOpen(){
 function sendMsg(){
 	var message = document.getElementById("msg");
 	var msg = {
-		'getter':getter.value,
-		'sender':sender.value,
-		'message':message.value
+		"getter":{
+			"idUser":getter.value
+		},
+		"sender":{
+			"idUser":sender.value
+		},
+		"good":{
+			"idGoods":"1"
+		},
+		"message":message.value
 	}
 	ws.send(JSON.stringify(msg));
 	document.getElementById("session").innerHTML += "我:"+message.value+"<br/>";

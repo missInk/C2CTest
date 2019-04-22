@@ -22,6 +22,7 @@ import com.C2C.Service.ProductMessageReplyService;
 import com.C2C.Service.VerificationCodeService;
 import com.C2C.Service.Impl.GoodLeaveMessageServiceImpl;
 import com.C2C.Service.Impl.GoodServiceImpl;
+import com.C2C.Service.Impl.MessageServiceImpl;
 import com.C2C.Service.Impl.PayServiceImpl;
 import com.C2C.Service.Impl.PositionServiceImpl;
 import com.C2C.Service.Impl.ProductMessageReplyServiceImpl;
@@ -136,6 +137,13 @@ public class Test {
 		System.out.println(impl.checkEmailStyle("245"));
 	}
 	
+	public static void checkMessage() {
+		ApplicationContext context = new ClassPathXmlApplicationContext("applicationContext.xml");
+		MessageServiceImpl messageService = (MessageServiceImpl)context.getBean("messageServiceImpl");
+//		messageService.addMessage(2, 1, 1, "123", 0);
+		printElements(messageService.getMessage(2, 13, 1, 0, 5));
+	}
+	
 	public static void main(String[] args) throws IOException{
 //		testSearchGood();
 //		testPosition();
@@ -143,13 +151,14 @@ public class Test {
 //		testGoodLeaveMessageServiceImpl();
 //		testJson();
 //		testPayServiceImpl();
-		testUserServiceImpl();
+//		testUserServiceImpl();
 //		testGoodService();
 //		testCode();
 //		testStyle();
 		/*String time = String.valueOf(System.currentTimeMillis());
 		String code = time.substring(time.length()-5);
 		System.out.println(code);*/
+		checkMessage();
 	}
 	
 }
