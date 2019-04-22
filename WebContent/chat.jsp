@@ -71,9 +71,9 @@
                     <!-- 发送消息开始 -->
                     <div class="send-message">
                         <div class="send-message-val-box">
-                            <textarea class="send-message-val" id="msg"></textarea>
+                            <textarea class="send-message-val" id="msg" cols="0"></textarea>
                         </div>
-                        <button class="send-message-btn" onclick="sendMsg()">发送</button>
+                        <button class="send-message-btn" id="sendBtn" onclick="sendMsg()">发送</button>
                     </div>
                     <!-- 发送消息结束 -->
                 </div>
@@ -87,6 +87,7 @@
 <%@include file="tail.jsp" %>
 
 <script type="text/javascript">
+document.getElementById("msg").addEventListener("keydown",keyDownSendMsg);
 var ws;
 var getterId = ${chatMessage.getter.idUser };
 var senderId = ${chatMessage.sender.idUser };

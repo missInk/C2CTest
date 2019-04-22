@@ -204,3 +204,7 @@
    /*background-image: url("../images/chat_bg.jpg");*/
     /*background-size: 100%;*/
 }
+.act.send-message-btn{
+	background-color:#ffdd8c;
+	color:#FFF;
+}

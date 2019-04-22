@@ -28,6 +28,9 @@ function getSocket(getterId, senderId, goodId) {
 
 function sendMsg(){
 	var message = document.getElementById("msg");
+	if(message.value.trim() == ""){
+		return;
+	}
 	var msg = {
 		"getter":{
 			"idUser":getterId
@@ -54,3 +57,32 @@ function sendMsg(){
  	document.getElementById("messageWrap").innerHTML += sendMsgStr;
 	message.value = "";
 }
+
+/**
+ * 在文本框中输入回车时，将消息发送出去
+ */
+function keyDownSendMsg(event){
+	changebtnStyle();
+	if(event.keyCode!=13){
+        return;
+    }else{//当按键输入为回车时，执行下列操作
+    	if (window.event) {
+	      window.event.returnValue = false;
+	    } else {
+	      e.preventDefault(); //for firefox
+	    }
+        sendMsg();
+    }
+}
+
+function changebtnStyle(){
+	var sendBtn = document.getElementById("sendBtn");
+	var message = document.getElementById("msg");
+	if(message.value.trim() == ""){
+		sendBtn.classList.remove("act");
+	}else{
+		sendBtn.classList.add("act");
+	}
+}
+
+
