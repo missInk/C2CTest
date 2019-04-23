@@ -23,7 +23,7 @@ VALUES (#{message.getter.idUser }, #{message.sender.idUser }, #{message.message 
 		<result property="idUser" column="getter"/>
 	</association>
 	<association property="sender" javaType="com.C2C.Entity.User">
-		<result property="idUser" column="getter"/>
+		<result property="idUser" column="sender"/>
 	</association>
 	<association property="good" javaType="com.C2C.Entity.Good">
 		<result property="idGoods" column="goodId"/>

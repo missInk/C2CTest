@@ -1,3 +1,6 @@
+let historyMessageCount;
+const size = 15;
+
 function getSocket(getterId, senderId, goodId) {
 	var target = "ws://li2453671898.yicp.io/C2CTest/chatSocket/"+senderId;
 	console.log(target);
@@ -72,6 +75,7 @@ function keyDownSendMsg(event){
 	      e.preventDefault(); //for firefox
 	    }
         sendMsg();
+        document.getElementById("sendBtn").classList.remove("act");
     }
 }
 
@@ -83,6 +87,85 @@ function changebtnStyle(){
 	}else{
 		sendBtn.classList.add("act");
 	}
+}
+
+function getHistoryCount(goodId, getterId){
+	var xmlhttp;
+	if (window.XMLHttpRequest){
+		xmlhttp=new XMLHttpRequest();
+	}else{
+		 xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
+	}
+	xmlhttp.onreadystatechange=function()
+	{
+		if (xmlhttp.readyState==4 && xmlhttp.status==200)
+		{
+			var result = xmlhttp.responseText;
+			if(isNotANumber(result)){
+				historyMessageCount = parseInt(result);
+			}else{
+				console.log(result);
+			}
+		}
+	}
+	xmlhttp.open("GET","ChatServlet?method=getHistoryMessageCount&goodId="+goodId+"&getterId="+getterId,true);
+	xmlhttp.send();
+}
+
+function isNotANumber(inputData) {
+	if(parseFloat(inputData).toString() == "NaN"){
+		return false;
+	}else{
+		return true;
+	}
+}
+
+function getHistoryMessage(goodId, getterId){
+	if(historyMessageCount == 0){
+		alert("已经显示所有历史消息记录了");
+	}
+	historyMessageCount = historyMessageCount-size > 0 ? historyMessageCount-size : 0;
+	var xmlhttp;
+	if (window.XMLHttpRequest){
+		xmlhttp=new XMLHttpRequest();
+	}else{
+		 xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
+	}
+	xmlhttp.onreadystatechange=function()
+	{
+		if (xmlhttp.readyState==4 && xmlhttp.status==200)
+		{
+			var jsonData = JSON.parse(xmlhttp.responseText);
+			console.log(jsonData);
+			var historyMsgStr = jsonData.map(val => {
+				if(val.getter.idUser == getterId){
+					return `
+					<div class="senderMsg">
+				        <div class="senderMsg-wrap">
+				            <div class="senderMsg-box">
+				                <div class="senderMsg-box-val"> ${val.message }</div>
+				            </div>
+				        </div>
+				    </div>
+					`;
+				}else{
+					return `
+				    <div class='getterMsg'>
+			           <div class='getterMsg-wrap'>
+			               <div class='getterMsg-box'>
+			                   <div class='getterMsg-box-val'> ${val.message }</div>
+			               </div>
+			           </div>
+			       </div>
+					`;
+				}
+			}).join("");
+			let messageHtml = document.getElementById("messageWrap").innerHTML;
+			document.getElementById("messageWrap").innerHTML = historyMsgStr + messageHtml;
+		}
+	}
+	xmlhttp.open("GET","ChatServlet?method=getMessage&goodId="+goodId+"&getterId="+getterId+"&star="+historyMessageCount+"&size="+size,true);
+	xmlhttp.send();
 }
 
 

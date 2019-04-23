@@ -61,7 +61,7 @@
                 <div class="chatPanel">
                     <div class="show-oldMsg">
                         <div  class="show-oldMsg-box">
-                            <span>点击查看历史消息</span>
+                            <span onclick="getHistoryMessage(${chatMessage.good.idGoods },${chatMessage.getter.idUser })">点击查看历史消息</span>
                         </div>
                     </div>
                     <div id="messageWrap"></div>
@@ -93,6 +93,7 @@ var getterId = ${chatMessage.getter.idUser };
 var senderId = ${chatMessage.sender.idUser };
 var goodId = ${chatMessage.good.idGoods };
 getSocket(getterId, senderId, goodId);
+getHistoryCount(goodId,getterId);
 </script>
 
 </body>
