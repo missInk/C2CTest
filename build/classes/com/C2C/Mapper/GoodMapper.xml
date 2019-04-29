@@ -5,7 +5,7 @@
 <mapper namespace="com.C2C.Mapper.GoodMapper">
 
   <select id="getGoodByIdGoods" resultMap="goodAndMessage">
-  	SELECT idGoods,category,sellMen,goodName,price,goodIntroduce,goodPhoto FROM c2cdemo.goods where idGoods = #{idGoods} and state = 0
+  	SELECT idGoods,category,sellMen,goodName,price,goodIntroduce,goodPhoto FROM c2cdemo.goods WHERE idGoods = #{idGoods} AND state = 0
   </select>
   
   <resultMap type="com.C2C.Entity.Good" id="goodAndMessage" autoMapping="true">
@@ -23,11 +23,11 @@
 	goods.sellMen
 	FROM goods,user
 	WHERE user.position = (
-		SELECT idposition FROM position WHERE position.positionName LIKE #{positionName} and position.range LIKE #{range} LIMIT 0,1
+		SELECT idposition FROM position WHERE position.positionName LIKE #{positionName} AND position.range LIKE #{range} LIMIT 0,1
 	) 
 	AND goods.state = 0
 	AND goods.sellMen = user.idUser
-	order by idGoods
+	ORDER BY idGoods
 	LIMIT #{page},25
   </select>
   

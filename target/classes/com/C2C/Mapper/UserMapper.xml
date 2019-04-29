@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.C2C.Mapper.UserMapper">
+
+<!-- User getUserByIdUser(int idUser); -->
+<select id="getUserByIdUser" resultType="com.C2C.Entity.User">
+	SELECT idUser, userName, headPortrait, school, sex FROM user WHERE idUser = #{idUser} LIMIT 0,1
+</select>
+
+<select id="checkUser" resultType="Integer">
+	SELECT idUser FROM c2cdemo.user WHERE email=#{email} AND password=#{password} LIMIT 0,1
+</select>
+
+<!-- User getUserInfo(int idUser); -->
+<select id="getUserInfo" resultType="com.C2C.Entity.User">
+	SELECT user.idUser,user.userName, user.headPortrait FROM c2cdemo.user where idUser = #{idUser} LIMIT 0,1
+</select>
+
+<!-- int regist(@Param("email")String email, @Param("userName")String userName, @Param("passWord")String passWord); -->
+<insert id="regist">
+	INSERT INTO `c2cdemo`.`user` (`email`, `userName`, `passWord`) VALUES (#{email}, #{userName}, #{passWord})
+</insert>
+
+<!-- boolean checkEmailRegist(String email); -->
+<select id="checkEmailRegist" resultType="Integer">
+	SELECT idUser FROM c2cdemo.user WHERE email=#{email} LIMIT 0,1
+</select>
+
+<!-- User getUserByAlipay(String alipay); -->
+<select id="getUserByAlipay" resultType="com.C2C.Entity.User">
+	SELECT user.email, user.password FROM c2cdemo.user WHERE alipay = #{alipay} LIMIT 0,1
+</select>
+
+<!-- boolean binding(@Param("email")String email, @Param("alipay")String alipay); -->
+<update id="binding">
+	UPDATE `c2cdemo`.`user` SET `alipay`=#{alipay} WHERE `email`=#{email}
+</update>
+
+<!-- String getHeadPortrait(String email); -->
+<select id="getHeadPortrait" resultType="String">
+	SELECT headPortrait FROM c2cdemo.user WHERE email = #{email} LIMIT 0,1
+</select>
+
+</mapper>

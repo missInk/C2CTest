@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:tx="http://www.springframework.org/schema/tx"
+	xmlns:aop="http://www.springframework.org/schema/aop"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.3.xsd
+		http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-4.3.xsd
+		http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-4.3.xsd">
+	
+	<!-- 加载数据库的配置文件 -->
+	<bean id="config" class="org.springframework.beans.factory.config.PreferencesPlaceholderConfigurer">
+		<property name="locations">
+			<array>
+				<value>classpath:database.properties</value>
+			</array>
+		</property>
+	</bean>
+	
+	<!-- 配置数据库相关 -->
+	<bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close">
+		<property name="driverClassName" value="${jdbc.driver}"/>
+        <property name="url" value="${jdbc.url}"/>
+        <property name="username" value="${jdbc.username}"/>
+        <property name="password" value="${jdbc.password}"/>
+	</bean>
+	
+	<!-- 在SpringIOC容器中，创建Mybatis的核心类SqlSessFactory -->
+	<bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+		<property name="dataSource" ref="dataSource"></property>
+		<!-- 加载Mybatis配置文件 -->
+		<property name="configLocation" value="classpath:mybatis-config.xml"></property>
+	</bean>
+	
+	<!-- 方法一继承SqlSessionDaoSupport类
+	<bean id="studentDao" class="cn.lxx.Dao.impl.StudentDaoImpl">
+		<property name="sqlSessionFactory" ref="sqlSessionFactory"></property>
+	</bean> -->
+	
+	<!-- 方法二：使用mybatis提供的dao实现类
+	<bean id="studentDao" class="org.mybatis.spring.mapper.MapperFactoryBean">
+		<property name="mapperInterface" value="cn.lxx.mapper.StudentMapper"></property>
+		<property name="sqlSessionFactory" ref="sqlSessionFactory"></property>
+	</bean> -->
+	
+	<!-- 方法三：批量参数Mapper对象的dao实现类
+		Mapper对应在IOC容器中的ID等于它的类名(首字母小写)	
+	 -->
+	<bean id="mappers" class="org.mybatis.spring.mapper.MapperScannerConfigurer">
+		<property name="sqlSessionFactoryBeanName" value="sqlSessionFactory"></property>
+		<property name="basePackage" value="com.C2C.Mapper"></property>
+	</bean>
+	
+	<bean id="goodServiceImpl" class="com.C2C.Service.Impl.GoodServiceImpl">
+		<property name="goodMapper" ref="goodMapper"></property>
+	</bean>
+	
+	<bean id="positionServiceImpl" class="com.C2C.Service.Impl.PositionServiceImpl">
+		<property name="positionMapper" ref="positionMapper"></property>
+	</bean>
+	
+	<bean id="productMessageReplyServiceImpl" class="com.C2C.Service.Impl.ProductMessageReplyServiceImpl">
+		<property name="productMessageReplyMapper" ref="productMessageReplyMapper"></property>
+	</bean>
+	
+	<bean id="goodLeaveMessageServiceImpl" class="com.C2C.Service.Impl.GoodLeaveMessageServiceImpl">
+		<property name="goodLeaveMessageMapper" ref="goodLeaveMessageMapper"></property>
+	</bean>
+	
+	<bean id="payServiceImpl" class="com.C2C.Service.Impl.PayServiceImpl">
+		<property name="orderMapper" ref="orderMapper"></property>
+	</bean>
+	
+	<bean id="userServiceImpl" class="com.C2C.Service.Impl.UserServiceImpl">
+		<property name="userMapper" ref="userMapper"></property>
+		<property name="codeService" ref="verificationCodeServiceImpl"></property>
+	</bean>
+	
+	<bean id="verificationCodeServiceImpl" class="com.C2C.Service.Impl.VerificationCodeServiceImpl">
+		<property name="verificationCodeMapper" ref="verificationCodeMapper"></property>
+	</bean>
+	
+	<bean id="messageServiceImpl" class="com.C2C.Service.Impl.MessageServiceImpl">
+		<property name="messageMapper" ref="messageMapper"></property>
+	</bean>
+	
+</beans>

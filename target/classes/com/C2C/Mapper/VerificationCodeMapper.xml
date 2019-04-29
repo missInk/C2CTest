@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.C2C.Mapper.VerificationCodeMapper">
+
+<!-- boolean insertEcode(String email, String ecode); -->
+<insert id="insertEcode">
+	INSERT INTO `c2cdemo`.`verification_code` (`email`, `ecode`) VALUES (#{email}, #{ecode});
+</insert>
+
+<!-- boolean checkEcode(String email, String ecode); -->
+<select id="checkEcode" resultType="String">
+	SELECT email FROM c2cdemo.verification_code WHERE email=#{email} AND ecode=#{ecode} LIMIT 0,1
+</select>
+
+<!-- String checkEmail(String email); -->
+<select id="checkEmail" resultType="String">
+	SELECT email FROM c2cdemo.verification_code WHERE email=#{email} LIMIT 0,1
+</select>
+
+<!-- boolean updateEcode(String email, String ecode); -->
+<update id="updateEcode">
+	UPDATE `c2cdemo`.`verification_code` SET `ecode`=#{ecode} WHERE `email`=#{email}
+</update>
+
+</mapper>

@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.C2C.Mapper.MessageMapper">
+
+<!-- void addMessage(Message message); -->
+<insert id="addMessage">
+INSERT INTO `c2cdemo`.`message` (`getter`, `sender`, `message`, `state`, `sendTime`, `goodId`) 
+VALUES (#{message.getter.idUser }, #{message.sender.idUser }, #{message.message }, #{message.state }, #{message.sendTime }, #{message.good.idGoods });
+</insert>
+
+<!-- List<Message> getMessage(Message message, int star, int size); -->
+<select id="getMessage" resultMap="historyMessage">
+	SELECT * FROM c2cdemo.message 
+	WHERE (getter = #{message.getter.idUser} AND sender = #{message.sender.idUser} AND goodId = #{message.good.idGoods}) 
+	OR (getter = #{message.sender.idUser} AND sender = #{message.getter.idUser} AND goodId = #{message.good.idGoods}) 
+	LIMIT #{star }, #{size }
+</select>
+
+<resultMap type="com.C2C.Entity.Message" id="historyMessage" autoMapping="true">
+	<association property="getter" javaType="com.C2C.Entity.User">
+		<result property="idUser" column="getter"/>
+	</association>
+	<association property="sender" javaType="com.C2C.Entity.User">
+		<result property="idUser" column="sender"/>
+	</association>
+	<association property="good" javaType="com.C2C.Entity.Good">
+		<result property="idGoods" column="goodId"/>
+	</association>
+</resultMap>
+
+<!-- int getHistoryMessageCount(@Param("message")Message message); -->
+<select id="getHistoryMessageCount" resultType="int">
+	SELECT count(idmessage) FROM c2cdemo.message 
+	WHERE (getter = #{message.getter.idUser} AND sender = #{message.sender.idUser} AND goodId = #{message.good.idGoods}) 
+	OR (getter = #{message.sender.idUser} AND sender = #{message.getter.idUser} AND goodId = #{message.good.idGoods})
+</select>
+
+</mapper>

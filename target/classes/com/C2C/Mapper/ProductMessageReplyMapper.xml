@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.C2C.Mapper.ProductMessageReplyMapper">
+
+<select id="getProductMessageReplyByMessageId" resultMap="productMessageReply">
+	SELECT * FROM c2cdemo.product_message_reply where messageId = #{messageId}
+</select>
+
+<resultMap type="com.C2C.Entity.ProductMessageReply" id="productMessageReply">
+	<id property="idProductMessageReply" column="idProductMessageReply"/>
+	<result property="messageId" column="messageId"/>
+	<result property="reply" column="reply"/>
+	<result property="replyDate" column="replyDate"/>
+	<association property="replyUser" select="com.C2C.Mapper.UserMapper.getUserInfo" column="replyUserId"></association>
+	<association property="beReplyUser" select="com.C2C.Mapper.UserMapper.getUserInfo" column="beReplyUserId"></association>
+</resultMap>
+
+<!-- int getMessageReplyCount(int messageId); -->
+<select id="getMessageReplyCount" resultType="int">
+	SELECT COUNT(idProductMessageReply) FROM c2cdemo.product_message_reply WHERE messageId = #{messageId }
+</select>
+
+<!-- boolean sendReply(ProductMessageReply messageReply); -->
+<insert id="sendReply">
+	INSERT INTO `c2cdemo`.`product_message_reply` (`messageId`, `replyUserId`, `beReplyUserId`, `reply`, `replyDate`) 
+	VALUES (#{messageReply.messageId }, #{messageReply.replyUser.idUser }, #{messageReply.beReplyUser.idUser }, #{messageReply.reply }, #{messageReply.replyDate });
+</insert>
+
+</mapper>

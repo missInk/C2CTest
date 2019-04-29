@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.C2C.Mapper.GoodLeaveMessageMapper">
+
+<select id="getGoodLeaveMessageByGoodId" resultMap="goodLeaveMessage">
+	SELECT * FROM c2cdemo.good_leave_message WHERE goodId = #{goodId}
+</select>
+
+<resultMap type="com.C2C.Entity.GoodLeaveMessage" id="goodLeaveMessage">
+	<id property="idgoodLeaveMessage" column="idgoodLeaveMessage"/>
+	<result property="goodId" column="goodId"/>
+	<result property="message" column="message"/>
+	<result property="leaveMessageDate" column="leaveMessageDate"/>
+	<association property="leaveUser" select="com.C2C.Mapper.UserMapper.getUserByIdUser" column="leaveUserId"></association>
+	<association property="replyCount" select="com.C2C.Mapper.ProductMessageReplyMapper.getMessageReplyCount" column="idgoodLeaveMessage"></association>
+</resultMap>
+
+<!-- boolean sendLeaveMessage(GoodLeaveMessage leaveMessage); -->
+<insert id="sendLeaveMessage">
+	INSERT INTO `c2cdemo`.`good_leave_message` (`goodId`, `leaveUserId`, `message`, `leaveMessageDate`) 
+	VALUES (#{leaveMessage.goodId }, #{leaveMessage.leaveUser.idUser }, #{leaveMessage.message }, #{leaveMessage.leaveMessageDate });
+</insert>
+
+
+</mapper>

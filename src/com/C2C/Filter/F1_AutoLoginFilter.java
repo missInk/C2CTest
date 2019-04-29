@@ -25,12 +25,10 @@ public class F1_AutoLoginFilter implements Filter {
 
 	private ApplicationContext context;
 	
-    @Override
     public void init(FilterConfig filterConfig) throws ServletException {
     	context = new ClassPathXmlApplicationContext("applicationContext.xml");
     }
 
-    @Override
     /**
      * 处理过滤信息方法
      */
@@ -68,7 +66,6 @@ public class F1_AutoLoginFilter implements Filter {
         chain.doFilter(request, response);
     }
     
-    @Override
     public void destroy() {
     }
 

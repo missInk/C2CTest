@@ -16,8 +16,9 @@ public class Good {
 	private String goodPhoto;
 	/**
 	 * 商品的状态
-	 * 1：已经售出
-	 * 2：未售出
+	 * 1：交易中（付款后即为交易中）
+	 * 2：交易完成（确认收货后即为交易完成）
+	 * 0：未售出（没有人购买即未售出）
 	 */
 	private String state;
 	private User sellMen;
