@@ -2,36 +2,24 @@ package com.C2C.Service.Impl;
 
 import java.io.IOException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
 import com.C2C.Entity.Good;
 import com.C2C.Mapper.GoodMapper;
 import com.C2C.Service.GoodService;
+import com.C2C.Util.MyCacheUtil;
 
 import net.sf.json.JSONObject;
 
 public class GoodServiceImpl implements GoodService {
 
 	private GoodMapper goodMapper;
-
+	private static final int SIZE = 25;
+	
 	public void setGoodMapper(GoodMapper goodMapper) {
 		this.goodMapper = goodMapper;
-	}
-
-	/**
-	 * 在一个字符串的前面以及每个字符的间隔处添加'%'，便于数据库进行模糊查找
-	 * @param range 被修改的字符串
-	 * @return 可以用于数据库模糊查找的字符串
-	 */
-	private String toFuzzyRange(String range) {
-		StringBuilder fuzzyRange = new StringBuilder("%");
-		char[] rangeArray = range.toCharArray();
-		for(char c : rangeArray) {
-			fuzzyRange.append(c);
-			fuzzyRange.append('%');
-		}
- 		return fuzzyRange.toString();
 	}
 
 	@Override
@@ -41,8 +29,19 @@ public class GoodServiceImpl implements GoodService {
 
 	@Override
 	public List<Good> getGoodsByPositionAndPage(String positionName, String range, int page) throws IOException {
-		range = toFuzzyRange(range);
-		return goodMapper.getGoodsByPositionAndPage(positionName, range, 25*(page-1));
+		List<Good> goods = null;
+		
+		//检索缓存
+		String key = positionName + "_" + range;
+		goods = MyCacheUtil.getList(key, Good.class);
+		
+		if(goods == null || goods.size() == 0) {
+			//检索mysql数据库
+			goods = goodMapper.getGoodsByPositionAndPage(positionName, range, SIZE*(page-1));
+			//将搜索结果同步到redis
+			MyCacheUtil.addList(key, goods);
+		}
+		return goods;
 	}
 	
 	/**

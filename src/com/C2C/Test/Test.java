@@ -152,13 +152,13 @@ public class Test {
 //		testJson();
 //		testPayServiceImpl();
 //		testUserServiceImpl();
-//		testGoodService();
+		testGoodService();
 //		testCode();
 //		testStyle();
 		/*String time = String.valueOf(System.currentTimeMillis());
 		String code = time.substring(time.length()-5);
 		System.out.println(code);*/
-		checkMessage();
+//		checkMessage();
 	}
 	
 }

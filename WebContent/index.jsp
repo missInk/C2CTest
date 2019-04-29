@@ -39,15 +39,15 @@
     /* if(session.getAttribute("position") != null){
        	Position position = (Position)session.getAttribute("position");
        	out.println(position.getPositionName() +":" +position.getRange());
-    }
+    } */
     if(session.getAttribute("goods") != null){
     	List<Good> goods = (List<Good>)session.getAttribute("goods");
     	Iterator<Good> iterator = goods.iterator();
        	while(iterator.hasNext()){
        		Good good = (Good)iterator.next();
-       		out.println("<br/>"+good.getGoodPhoto()+good.getGoodName()+good.getOwner().getStoreOwner().getHeadPortrait()+good.getOwner().getStoreOwner().getUserName()+"<br/>");
+       		out.println("<br/>"+good.getGoodPhoto()+good.getGoodName()+"<br/>");
        	}
-    } */
+    }
     %>
     <div class="main"></div>
     <div class="bottom"></div>
