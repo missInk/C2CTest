@@ -1,14 +1,12 @@
 package com.C2C.Service.Impl;
 
 import java.io.IOException;
-import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 import com.C2C.Entity.Good;
 import com.C2C.Mapper.GoodMapper;
 import com.C2C.Service.GoodService;
+import com.C2C.Util.DateUtil;
 import com.C2C.Util.MyCacheUtil;
 
 import net.sf.json.JSONObject;
@@ -44,19 +42,9 @@ public class GoodServiceImpl implements GoodService {
 		return goods;
 	}
 	
-	/**
-	 * 返回一个字符串形式的时间
-	 * @return 字符串形式的时间
-	 */
-	private String getDate() {
-		Date date = new Date();
-		SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-		return dateFormat.format(date);
-	}
-
 	@Override
 	public boolean issueGood(int idUser, String goodName, String price, String goodPhoto, String goodIntroduce, String category) {
-		String issueDate = getDate();
+		String issueDate = DateUtil.getNowDate();
 		Good good = new Good();
 		good.setGoodName(goodName);
 		good.setPrice(Double.parseDouble(price));

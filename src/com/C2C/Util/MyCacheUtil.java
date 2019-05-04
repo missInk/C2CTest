@@ -16,7 +16,6 @@ public class MyCacheUtil {
 		try {
 			jedis = JedisPoolUtils.getJedis();
 		} catch (Exception e) {
-			e.getMessage();
 			return null;
 		}
 

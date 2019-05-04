@@ -49,13 +49,13 @@ public class F2_PositionFilter implements Filter  {
             position.setRange(range);
             req.getSession().setAttribute("position", position);
         }else {
-        	Cookie positionCookie = new Cookie("position","南昌&江西农业大学");
+        	Cookie positionCookie = new Cookie("position","南昌&江西农业大学（东区）");
         	positionCookie.setMaxAge(360000);
         	positionCookie.setPath(" /C2CTest/index.jsp");
     		resp.addCookie(positionCookie);
     		Position position = new Position();
             position.setPositionName("南昌");
-            position.setRange("江西农业大学");
+            position.setRange("江西农业大学（东区）");
             req.getSession().setAttribute("position", position);
         }
         chain.doFilter(request, response);

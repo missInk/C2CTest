@@ -1,7 +1,5 @@
 package com.C2C.Service.Impl;
 
-import java.text.SimpleDateFormat;
-import java.util.Date;
 import java.util.List;
 
 import com.C2C.Entity.Good;
@@ -9,6 +7,7 @@ import com.C2C.Entity.Message;
 import com.C2C.Entity.User;
 import com.C2C.Mapper.MessageMapper;
 import com.C2C.Service.MessageService;
+import com.C2C.Util.DateUtil;
 
 import net.sf.json.JSONArray;
 
@@ -41,9 +40,7 @@ public class MessageServiceImpl implements MessageService {
 	 * @return 字符串格式的时间
 	 */
 	private String getSendTime() {
-		Date date = new Date();
-		SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-		String sendTime = dateFormat.format(date);
+		String sendTime = DateUtil.getNowDate();
 		return sendTime;
 	}
 	
