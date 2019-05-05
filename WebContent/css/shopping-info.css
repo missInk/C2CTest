@@ -99,7 +99,7 @@
     background-color: transparent;
     border: none;
 }
-.perform-order-buy-btn{
+.perform-order-buy-btn, .perform-order-connection-btn{
     margin-top: 30px;
     width: 210px;
     height: 40px;
@@ -112,6 +112,9 @@
     cursor: pointer;
     border-radius: 3px;
     display: inline-block;
+}
+.perform-order-connection-btn{
+	margin-left: 15px;
 }
 .tabs-nav {
     border-bottom: 1px solid #ddd;

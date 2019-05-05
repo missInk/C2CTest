@@ -26,7 +26,7 @@
             </a>
         </div>
         <div class="current-page">
-            <a href="#" class="home-page">首页</a>
+            <a href="alert('待开发')" class="home-page">首页</a>
         </div>
         <!-- E 左侧logo -->
         <!-- S 顶部导航栏 -->
@@ -35,7 +35,7 @@
 		    if(session.getAttribute("user") != null){
 		    	User user = (User)session.getAttribute("user");
 		%>
-            <a href="#" class="user-msg">
+            <a href="alert('待开发')" class="user-msg">
                 <img src=${user.headPortrait } class="avatar" alt="默认头像" title="头像" width="50px" height="50px">
             </a>
 		 	<div>
@@ -51,9 +51,10 @@
                     <li>我的关注</li>
                 </ul>
             </div>
-            <a href="#" class="user-mine">我的消息</a>
+            <a href="alert('待开发')" class="user-mine">我的消息</a>
+            <a href="alert('待开发')" class="user-mine">我的信息</a>
             <% if(session.getAttribute("user") == null){ %>
-            <a href="" class="login">登录/注册</a>
+            <a href="${pageContext.request.contextPath }/login.jsp" class="login">登录/注册</a>
             <%} %>
         </div>
         <!-- E 顶部导航栏 -->
@@ -91,15 +92,15 @@
         <!-- S 商品分类栏 -->
         <div class="main-cate">
             <ul class="main-cate-list">
-                <li><a href="javascript:void(0);" class="main-cate-list-a act">随便看看</a></li>
-                <li><a href="javascript:void(0);" class="main-cate-list-a">男女服饰</a></li>
-                <li><a href="javascript:void(0);" class="main-cate-list-a">美妆洗护</a></li>
-                <li><a href="javascript:void(0);" class="main-cate-list-a">生活日用</a></li>
-                <li><a href="javascript:void(0);" class="main-cate-list-a">零食</a></li>
-                <li><a href="javascript:void(0);" class="main-cate-list-a">书籍试卷</a></li>
-                <li><a href="javascript:void(0);" class="main-cate-list-a">办公用品</a></li>
-                <li><a href="javascript:void(0);" class="main-cate-list-a">运动器材</a></li>
-                <li><a href="javascript:void(0);" class="main-cate-list-a">关注</a></li>
+                <li><a href="alert('待开发')" class="main-cate-list-a act">随便看看</a></li>
+                <li><a href="alert('待开发')" class="main-cate-list-a">男女服饰</a></li>
+                <li><a href="alert('待开发')" class="main-cate-list-a">美妆洗护</a></li>
+                <li><a href="alert('待开发')" class="main-cate-list-a">生活日用</a></li>
+                <li><a href="alert('待开发')" class="main-cate-list-a">零食</a></li>
+                <li><a href="alert('待开发')" class="main-cate-list-a">书籍试卷</a></li>
+                <li><a href="alert('待开发')" class="main-cate-list-a">办公用品</a></li>
+                <li><a href="alert('待开发')" class="main-cate-list-a">运动户外</a></li>
+                <li><a href="alert('待开发')" class="main-cate-list-a">关注</a></li>
             </ul>
         </div>
         <!-- E 商品分类栏 -->
@@ -115,7 +116,7 @@
 	     <div class="main-goodsinfo">
             <div class="info-detail">
                 <img class="info-img" src=<%=good.getGoodPhoto() %> alt="">
-                <div class="good-brief"><%=good.getGoodName() %></div>
+                <div class="good-brief"><a href="${pageContext.request.contextPath }/GoodServlet?method=getGoodByIdGoods&idGoods=<%=good.getIdGoods() %>"><%=good.getGoodName() %></a></div>
                 <div class="good-price"><%=good.getPrice() %></div>
                 <div class="good-user">
                     <img class="user-img" src=<%=good.getSellMen().getHeadPortrait() %> alt="">
@@ -128,37 +129,24 @@
 	       	}
 	    }
     	%>
-       
-        
         <div class="page-index">
+       	   <div class="good-page-index">
+                <img class="index-circle" src="${pageContext.request.contextPath }/images/圆形.png" alt="">
+                <a class="index-number act" href="">1</a>
+            </div>
+        <%
+	    if(session.getAttribute("pageSize") != null){
+	    	int pageSize = Integer.parseInt((String)session.getAttribute("pageSize"));
+	    	for(int i = 1; i < pageSize; i++){
+	    %>
             <div class="good-page-index">
                 <img class="index-circle" src="${pageContext.request.contextPath }/images/圆形.png" alt="">
-                <a class="index-number" href="">1</a>
+                <a class="index-number" href="alert('待开发')"><%=i+1 %></a>
             </div>
-            <div class="good-page-index">
-                <img class="index-circle" src="${pageContext.request.contextPath }/images/圆形.png" alt="">
-                <a class="index-number" href="">2</a>
-            </div>
-            <div class="good-page-index">
-                <img class="index-circle" src="${pageContext.request.contextPath }/images/圆形.png" alt="">
-                <a class="index-number" href="">3</a>
-            </div>
-            <div class="good-page-index">
-                <img class="index-circle" src="${pageContext.request.contextPath }/images/圆形.png" alt="">
-                <a class="index-number" href="">4</a>
-            </div>
-            <div class="good-page-index">
-                <img class="index-circle" src="${pageContext.request.contextPath }/images/圆形.png" alt="">
-                <a class="index-number" href="">5</a>
-            </div>
-            <div class="good-page-index">
-                <img class="index-circle" src="${pageContext.request.contextPath }/images/圆形.png" alt="">
-                <a class="index-number" href="">6</a>
-            </div>
-            <div class="good-page-index">
-                <img class="index-circle" src="${pageContext.request.contextPath }/images/圆形.png" alt="">
-                <a class="index-number" href="">7</a>
-            </div>
+       <%
+	       	}
+	    }
+    	%>
         </div>
         <!-- E 商品信息 -->
     </div>

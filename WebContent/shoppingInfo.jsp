@@ -39,8 +39,17 @@ if(request.getAttribute("good") == null){
                 <div class="shopping-info-category">商品类别：${good.category }</div>
                 <div class="shopping-info-place">交易范围：${position.positionName }-${position.range }</div>
                 <div class="shopping-info-price">商品价格：<span style="color: red;">￥${good.price }</span></div>
-                <div class="perform-order-buy-btn" onclick="javaScript:alert('开发ing，别点了')">我想要</div>
-            	<div class="perform-order-buy-btn" onclick="goChat(${good.sellMen.idUser },${good.idGoods})">联系店家</div>
+                <div class="perform-order-buy-btn" onclick="submitPayForm()">我想要</div>
+            	<div class="perform-order-connection-btn" onclick="goChat(${good.sellMen.idUser },${good.idGoods})">联系店家</div>
+                <form action="PayServlet?method=pay" method="post" target="_blank" id="payForm">
+               			<input type="hidden" value="${good.idGoods}" name="idgood">
+               	</form>
+               	<script type="text/javascript">
+               	function submitPayForm() {
+               		let form = document.getElementById('payForm');
+               		form.submit();
+				}
+               	</script>
             </div>
         </div>
     </div>
@@ -74,7 +83,7 @@ if(request.getAttribute("good") == null){
                             <div class="sendLessMessageTit">发表留言</div>
                             <textarea class="sendMessageValue" id="sendMessageValue"></textarea>
                             <div class="sendBtnContent">
-                                <a class="sendLessMessageBtn" href="#" onclick="sendLeaveMessage('${good.idGoods }','${user.idUser }')">发送留言</a>
+                                <a class="sendLessMessageBtn" href="javascript:void(0);" onclick="sendLeaveMessage('${good.idGoods }','${user.idUser }')">发送留言</a>
                             </div>
                         </div>
                     </div>

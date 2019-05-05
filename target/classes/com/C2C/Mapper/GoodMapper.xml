@@ -12,7 +12,8 @@
   	<result property="idGoods" column="idGoods"/>
   	<association property="sellMen" javaType="com.C2C.Entity.User" select="com.C2C.Mapper.UserMapper.getUserInfo" column="sellMen"></association>
   </resultMap>
-  
+
+  <!-- List<Good> getGoodsByPositionAndPage(@Param("positionName")String positionName, @Param("range")String range, @Param("category")String category, @Param("page")int page); -->  
   <select id="getGoodsByPositionAndPage" resultMap="getSellMen">
   	SELECT 
 	goods.idGoods,
@@ -27,8 +28,11 @@
 	) 
 	AND goods.state = 0
 	AND goods.sellMen = user.idUser
+	<if test="category!=null">
+	AND goods.category = #{category }
+	</if>
 	ORDER BY idGoods
-	LIMIT #{page},25
+	LIMIT #{star},#{size}
   </select>
   
   <resultMap type="com.C2C.Entity.Good" id="getSellMen" autoMapping="true">
@@ -42,5 +46,18 @@
   	VALUES 
   	(#{good.category}, #{sellMen}, #{good.goodName}, #{good.price}, #{good.goodIntroduce}, #{good.issueDate})
   </insert>
+  
+  <!-- int getGoodCount(@Param("positionName")String positionName, @Param("range")String range, @Param("category")String category); -->
+  <select id="getGoodCount" resultType="int">
+  	SELECT count(idGoods) FROM c2cdemo.goods where sellMen in(
+		select idUser FROM user where position in(
+			select idPosition FRom position where positionName LIKE #{positionName} AND position.range LIKE #{range}
+		)
+	) 
+	<if test="category!=null">
+		and category = #{category}
+	</if>
+  </select>
+  
   
 </mapper>

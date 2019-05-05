@@ -26,20 +26,50 @@ public class GoodServiceImpl implements GoodService {
 	}
 
 	@Override
-	public List<Good> getGoodsByPositionAndPage(String positionName, String range, int page) throws IOException {
+	public List<Good> getGoodsByPositionAndPage(String positionName, String range, int page, String category) throws IOException {
 		List<Good> goods = null;
 		
 		//检索缓存
 		String key = positionName + "_" + range;
-		goods = MyCacheUtil.getList(key, Good.class);
+		if(category != null) {
+			key += ("_" + category);
+		}
+		goods = MyCacheUtil.getList(key, Good.class, SIZE*(page-1), SIZE);
 		
 		if(goods == null || goods.size() == 0) {
 			//检索mysql数据库
-			goods = goodMapper.getGoodsByPositionAndPage(positionName, range, SIZE*(page-1));
+			goods = goodMapper.getGoodsByPositionAndPage(positionName, range, category, SIZE*(page-1), SIZE);
 			//将搜索结果同步到redis
-			MyCacheUtil.addList(key, goods);
+			CacheGood cacheGood = new CacheGood(positionName, range, page, category, 250);
+			cacheGood.start();
 		}
 		return goods;
+	}
+	
+	class CacheGood extends Thread{
+		
+		String positionName;
+		String range;
+		int page;
+		String category;
+		int size;
+		
+		public CacheGood(String positionName, String range, int page, String category, int size) {
+			this.category = category;
+			this.page = page;
+			this.positionName = positionName;
+			this.range = range;
+			this.size = size;
+		}
+		
+		public void run() {
+			String key = positionName + "_" + range;
+			if(category != null) {
+				key += ("_" + category);
+			}
+			List<Good> cacheGood = goodMapper.getGoodsByPositionAndPage(positionName, range, category, SIZE*(page-1), size);
+			MyCacheUtil.addList(key, cacheGood);
+		}
 	}
 	
 	@Override
@@ -59,6 +89,12 @@ public class GoodServiceImpl implements GoodService {
 	public String goodToJson(Good good) {
 		JSONObject json = JSONObject.fromObject(good);
 		return json.toString();
+	}
+
+	@Override
+	public int getGoodPageSize(String positionName, String range, String category) {
+		int goodCount = goodMapper.getGoodCount(positionName, range, category);
+		return goodCount%SIZE==0 ? goodCount/SIZE : (goodCount/SIZE+1);
 	}
 
 }

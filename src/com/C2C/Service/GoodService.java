@@ -14,7 +14,7 @@ public interface GoodService {
 	 * @param page 当前页数
 	 * @return 一个商品集合
 	 */
-	List<Good> getGoodsByPositionAndPage(String positionName, String range, int page) throws IOException;
+	List<Good> getGoodsByPositionAndPage(String positionName, String range, int page, String category) throws IOException;
 	
 	/**
 	 * 通过商品的ID来获得商品的实体信息
@@ -41,4 +41,13 @@ public interface GoodService {
 	 * @return 商品的json格式的字符串
 	 */
 	String goodToJson(Good good);
+	
+	/**
+	 * 根据商品的地点，范围，商品种类获得商品的页数
+	 * @param positionName 商品地点
+	 * @param range 范围
+	 * @param category 商品种类
+	 * @return 符合该条件的商品页数
+	 */
+	int getGoodPageSize(String positionName, String range, String category);
 }

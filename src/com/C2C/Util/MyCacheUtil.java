@@ -9,7 +9,7 @@ import redis.clients.jedis.Jedis;
 
 public class MyCacheUtil {
 
-	public static <T> List<T> getList(String key, Class<T> t) {
+	public static <T> List<T> getList(String key, Class<T> t, int star, int end) {
 		List<T> list = new ArrayList<T>();
 
 		Jedis jedis = null;
@@ -19,7 +19,7 @@ public class MyCacheUtil {
 			return null;
 		}
 
-		Set<String> zrange = jedis.zrange(key, 0, -1);
+		Set<String> zrange = jedis.zrange(key, star, end);
 		Iterator<String> iterator = zrange.iterator();
 		while (iterator.hasNext()) {
 			String jsonStr = iterator.next();

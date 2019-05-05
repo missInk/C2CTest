@@ -25,6 +25,7 @@ import com.C2C.Service.Impl.GoodServiceImpl;
 public class F3_GoodFilter implements Filter {
 
 	private ApplicationContext context;
+	private GoodService goodService;
 	
 	public void destroy() {
 	}
@@ -41,15 +42,17 @@ public class F3_GoodFilter implements Filter {
         Position position = (Position)req.getSession().getAttribute("position");
         Object page = req.getParameter("page");
         if (user != null && position != null && page == null) {
-        	GoodService goodService = (GoodServiceImpl)context.getBean("goodServiceImpl");
-        	List<Good> goods = goodService.getGoodsByPositionAndPage(position.getPositionName(), position.getRange(), 1);
+        	List<Good> goods = goodService.getGoodsByPositionAndPage(position.getPositionName(), position.getRange(), 1, null);
         	req.getSession().setAttribute("goods", goods);
         }
+        int pageSize = goodService.getGoodPageSize(position.getPositionName(), position.getRange(), null);
+    	req.getSession().setAttribute("pageSize", pageSize);
         chain.doFilter(request, response);
 	}
 
 	public void init(FilterConfig fConfig) throws ServletException {
 		context = new ClassPathXmlApplicationContext("applicationContext.xml");
+		goodService = (GoodServiceImpl)context.getBean("goodServiceImpl");
 	}
 
 }
