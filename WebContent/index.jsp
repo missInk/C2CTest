@@ -10,48 +10,11 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 <title>赚赚在线校园闲置交易网</title>
-<link rel="stylesheet" href="./css/cssreset.css">
-<link rel="stylesheet" href="./css/index.css">
-<script src="js/zhuan.js"></script>
+<link rel="stylesheet" href="${pageContext.request.contextPath }/css/cssreset.css">
+<link rel="stylesheet" href="${pageContext.request.contextPath }/css/index.css">
+<script src="${pageContext.request.contextPath }/js/zhuan.js"></script>
 </head>
 <body>
-	<div class="top">
-       <div class="tl">
-           <span>
-                <h1>赚赚</h1>
-           </span>
-       </div>
-       <div class="tr">
-            <span>
-                <a href="${pageContext.request.contextPath }/login.jsp">登陆</a>
-            </span>
-            <span>
-                <a href="./login.html">取消</a>
-            </span>
-       </div>
-    </div>
-    <%
-    if(session.getAttribute("user") != null){
-    	User user = (User)session.getAttribute("user");
-    	out.println(" 用户ID："+user.getIdUser());
-    	out.println(" 用户名："+user.getUserName());
-    	out.println(" 性别："+user.getSex());
-    	out.println(" 学校："+user.getSchool());
-    	out.println(" 头像："+user.getHeadPortrait());
-    }
-    /* if(session.getAttribute("position") != null){
-       	Position position = (Position)session.getAttribute("position");
-       	out.println(position.getPositionName() +":" +position.getRange());
-    } */
-    if(session.getAttribute("goods") != null){
-    	List<Good> goods = (List<Good>)session.getAttribute("goods");
-    	Iterator<Good> iterator = goods.iterator();
-       	while(iterator.hasNext()){
-       		Good good = (Good)iterator.next();
-       		out.println("<br/>"+good.getGoodPhoto()+good.getGoodName()+"<br/>");
-       	}
-    }
-    %>
     <!-- S 网站头部 -->
     <div class="h-header">
         <!-- S 左侧logo -->
@@ -59,7 +22,7 @@
             <!-- h1标题仅仅用于网站SEO优化，不用于显示给用户看 -->
             <h1>赚赚在线校园闲置交易网</h1>
             <a href="#">
-                <img src="./img/logo.png" alt="logo" title="赚赚在线校园闲置交易网">
+                <img src="${pageContext.request.contextPath }/images/logo.png" alt="logo" title="赚赚在线校园闲置交易网">
             </a>
         </div>
         <div class="current-page">
@@ -68,9 +31,19 @@
         <!-- E 左侧logo -->
         <!-- S 顶部导航栏 -->
         <div class="top-nav">
+        <%
+		    if(session.getAttribute("user") != null){
+		    	User user = (User)session.getAttribute("user");
+		%>
             <a href="#" class="user-msg">
-                <img src="./img/avatar.png" class="avatar" alt="默认头像" title="头像" width="50px" height="50px">
+                <img src=${user.headPortrait } class="avatar" alt="默认头像" title="头像" width="50px" height="50px">
             </a>
+		 	<div>
+		 		<a>${user.userName }</a>
+		 	</div>
+		 <%
+		    }
+		 %>
             <div class="user-mine">我的交易
                 <ul class="trade-list">
                     <li>出售中</li>
@@ -79,7 +52,9 @@
                 </ul>
             </div>
             <a href="#" class="user-mine">我的消息</a>
+            <% if(session.getAttribute("user") == null){ %>
             <a href="" class="login">登录/注册</a>
+            <%} %>
         </div>
         <!-- E 顶部导航栏 -->
     </div>
@@ -90,22 +65,22 @@
         <div class="main-nav">
             <div class="location-header">
                 <div class="location-header-box">
-                    <img class="location-header-img" src="./img/positionLogo.png" alt="定位">
-                    <span>南昌</span>
-                    <img class="location-header-img" src="./img/lowPositionLogo.png" alt="箭头">
-                    <span>&nbsp;江西农业大学</span>
-                    <img class="location-header-img" src="./img/lowPositionLogo.png" alt="箭头">
+                    <img class="location-header-img" src="${pageContext.request.contextPath }/images/positionLogo.png" alt="定位">
+                    <span>${position.positionName }</span>
+                    <img class="location-header-img" src="${pageContext.request.contextPath }/images/lowPositionLogo.png" alt="箭头">
+                    <span>&nbsp;${position.range }</span>
+                    <img class="location-header-img" src="${pageContext.request.contextPath }/images/lowPositionLogo.png" alt="箭头">
                 </div>
             </div>
             <div class="search-header">
-                <img class="search-header-img" src="./img/search.png" alt="搜索">
+                <img class="search-header-img" src="${pageContext.request.contextPath }/images/search.png" alt="搜索">
                 <input class="search-header-input" placeholder="输入商品名称搜索商品">
                 <span class="search-header-button">搜索</span>
             </div>
             <div class="publish">
                 <a href="">
                     <div class="icon-pub">
-                        <img class="publish-img" src="./img/publish.png" alt="发布闲置">
+                        <img class="publish-img" src="${pageContext.request.contextPath }/images/publish.png" alt="发布闲置">
                     </div>
                     <span class="publish-span">发布我的闲置</span>
                 </a>
@@ -129,45 +104,59 @@
         </div>
         <!-- E 商品分类栏 -->
         <!-- S 商品信息 -->
-        <div class="main-goodsinfo">
+        <%
+	    if(session.getAttribute("goods") != null){
+	    	List<Good> goods = (List<Good>)session.getAttribute("goods");
+	    	Iterator<Good> iterator = goods.iterator();
+	       	while(iterator.hasNext()){
+	       		Good good = (Good)iterator.next();
+	    %>
+	    
+	     <div class="main-goodsinfo">
             <div class="info-detail">
-                <img class="info-img" src="./img/shop.jpg" alt="">
-                <div class="good-brief">匡威CONVERSE☆拼接短袖匡威CONVERSE☆拼接E☆拼接</div>
-                <div class="good-price">￥999999</div>
+                <img class="info-img" src=<%=good.getGoodPhoto() %> alt="">
+                <div class="good-brief"><%=good.getGoodName() %></div>
+                <div class="good-price"><%=good.getPrice() %></div>
                 <div class="good-user">
-                    <img class="user-img" src="./img/avatar.png" alt="">
-                    <span>用户名用户名</span>
-                    <img class="user-img" src="./img/u=2606411160,3011540467&fm=58&bpow=600&bpoh=598.jpg" alt="">
+                    <img class="user-img" src=<%=good.getSellMen().getHeadPortrait() %> alt="">
+                    <span><%=good.getSellMen().getUserName() %></span>
                 </div>
             </div>
         </div>
+	    
+	    <%
+	       	}
+	    }
+    	%>
+       
+        
         <div class="page-index">
             <div class="good-page-index">
-                <img class="index-circle" src="./img/圆形.png" alt="">
+                <img class="index-circle" src="${pageContext.request.contextPath }/images/圆形.png" alt="">
                 <a class="index-number" href="">1</a>
             </div>
             <div class="good-page-index">
-                <img class="index-circle" src="./img/圆形.png" alt="">
+                <img class="index-circle" src="${pageContext.request.contextPath }/images/圆形.png" alt="">
                 <a class="index-number" href="">2</a>
             </div>
             <div class="good-page-index">
-                <img class="index-circle" src="./img/圆形.png" alt="">
+                <img class="index-circle" src="${pageContext.request.contextPath }/images/圆形.png" alt="">
                 <a class="index-number" href="">3</a>
             </div>
             <div class="good-page-index">
-                <img class="index-circle" src="./img/圆形.png" alt="">
+                <img class="index-circle" src="${pageContext.request.contextPath }/images/圆形.png" alt="">
                 <a class="index-number" href="">4</a>
             </div>
             <div class="good-page-index">
-                <img class="index-circle" src="./img/圆形.png" alt="">
+                <img class="index-circle" src="${pageContext.request.contextPath }/images/圆形.png" alt="">
                 <a class="index-number" href="">5</a>
             </div>
             <div class="good-page-index">
-                <img class="index-circle" src="./img/圆形.png" alt="">
+                <img class="index-circle" src="${pageContext.request.contextPath }/images/圆形.png" alt="">
                 <a class="index-number" href="">6</a>
             </div>
             <div class="good-page-index">
-                <img class="index-circle" src="./img/圆形.png" alt="">
+                <img class="index-circle" src="${pageContext.request.contextPath }/images/圆形.png" alt="">
                 <a class="index-number" href="">7</a>
             </div>
         </div>
