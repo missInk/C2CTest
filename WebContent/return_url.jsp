@@ -59,5 +59,9 @@
 	//——请在这里编写您的程序（以上代码仅作参考）——
 %>
 <body>
+<script type="text/javascript">
+alert("付款成功，正在返回之前的页面");
+window.close();
+</script>
 </body>
 </html>

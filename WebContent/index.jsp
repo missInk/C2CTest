@@ -26,7 +26,7 @@
             </a>
         </div>
         <div class="current-page">
-            <a href="alert('待开发')" class="home-page">首页</a>
+            <a href="${pageContext.request.contextPath }/index.jsp" class="home-page">首页</a>
         </div>
         <!-- E 左侧logo -->
         <!-- S 顶部导航栏 -->
@@ -35,12 +35,10 @@
 		    if(session.getAttribute("user") != null){
 		    	User user = (User)session.getAttribute("user");
 		%>
-            <a href="alert('待开发')" class="user-msg">
+		 	<a href="javascript:alert('待开发')">${user.userName }</a>
+            <a href="javascript:alert('待开发')" class="user-msg">
                 <img src=${user.headPortrait } class="avatar" alt="默认头像" title="头像" width="50px" height="50px">
             </a>
-		 	<div>
-		 		<a>${user.userName }</a>
-		 	</div>
 		 <%
 		    }
 		 %>
@@ -51,8 +49,8 @@
                     <li>我的关注</li>
                 </ul>
             </div>
-            <a href="alert('待开发')" class="user-mine">我的消息</a>
-            <a href="alert('待开发')" class="user-mine">我的信息</a>
+            <a href="javascript:alert('待开发')" class="user-mine">我的消息</a>
+            <a href="javascript:alert('待开发')" class="user-mine">我的信息</a>
             <% if(session.getAttribute("user") == null){ %>
             <a href="${pageContext.request.contextPath }/login.jsp" class="login">登录/注册</a>
             <%} %>
@@ -76,10 +74,10 @@
             <div class="search-header">
                 <img class="search-header-img" src="${pageContext.request.contextPath }/images/search.png" alt="搜索">
                 <input class="search-header-input" placeholder="输入商品名称搜索商品">
-                <span class="search-header-button">搜索</span>
+                <span class="search-header-button" onclick="javascript:alert('待开发')">搜索</span>
             </div>
             <div class="publish">
-                <a href="">
+                <a href="javascript:alert('待开发')">
                     <div class="icon-pub">
                         <img class="publish-img" src="${pageContext.request.contextPath }/images/publish.png" alt="发布闲置">
                     </div>
@@ -92,15 +90,15 @@
         <!-- S 商品分类栏 -->
         <div class="main-cate">
             <ul class="main-cate-list">
-                <li><a href="alert('待开发')" class="main-cate-list-a act">随便看看</a></li>
-                <li><a href="alert('待开发')" class="main-cate-list-a">男女服饰</a></li>
-                <li><a href="alert('待开发')" class="main-cate-list-a">美妆洗护</a></li>
-                <li><a href="alert('待开发')" class="main-cate-list-a">生活日用</a></li>
-                <li><a href="alert('待开发')" class="main-cate-list-a">零食</a></li>
-                <li><a href="alert('待开发')" class="main-cate-list-a">书籍试卷</a></li>
-                <li><a href="alert('待开发')" class="main-cate-list-a">办公用品</a></li>
-                <li><a href="alert('待开发')" class="main-cate-list-a">运动户外</a></li>
-                <li><a href="alert('待开发')" class="main-cate-list-a">关注</a></li>
+                <li><a href="javascript:void(0);" onclick="goCategory('all')" class="main-cate-list-a act">随便看看</a></li>
+                <li><a href="javascript:void(0);" onclick="goCategory('男女服饰')" class="main-cate-list-a">男女服饰</a></li>
+                <li><a href="javascript:void(0);" onclick="goCategory('美妆洗护')" class="main-cate-list-a">美妆洗护</a></li>
+                <li><a href="javascript:void(0);" onclick="goCategory('生活日用')" class="main-cate-list-a">生活日用</a></li>
+                <li><a href="javascript:void(0);" onclick="goCategory('零食')" class="main-cate-list-a">零食</a></li>
+                <li><a href="javascript:void(0);" onclick="goCategory('书籍试卷')" class="main-cate-list-a">书籍试卷</a></li>
+                <li><a href="javascript:void(0);" onclick="goCategory('办公用品')" class="main-cate-list-a">办公用品</a></li>
+                <li><a href="javascript:void(0);" onclick="goCategory('运动户外')" class="main-cate-list-a">运动户外</a></li>
+                <li><a href="javascript:alert('待开发')" class="main-cate-list-a">关注</a></li>
             </ul>
         </div>
         <!-- E 商品分类栏 -->
@@ -132,21 +130,21 @@
         <div class="page-index">
        	   <div class="good-page-index">
                 <img class="index-circle" src="${pageContext.request.contextPath }/images/圆形.png" alt="">
-                <a class="index-number act" href="">1</a>
+                <a class="index-number act" href="javascript:alert('待开发')">1</a>
             </div>
-        <%
+        <%-- <%
 	    if(session.getAttribute("pageSize") != null){
 	    	int pageSize = Integer.parseInt((String)session.getAttribute("pageSize"));
 	    	for(int i = 1; i < pageSize; i++){
 	    %>
             <div class="good-page-index">
                 <img class="index-circle" src="${pageContext.request.contextPath }/images/圆形.png" alt="">
-                <a class="index-number" href="alert('待开发')"><%=i+1 %></a>
+                <a class="index-number" href="javascript:alert('待开发')"><%=i+1 %></a>
             </div>
        <%
 	       	}
 	    }
-    	%>
+    	%> --%>
         </div>
         <!-- E 商品信息 -->
     </div>
@@ -156,4 +154,17 @@
     </div>
     <!-- E 网站底部 -->
 </body>
+
+ <script type="text/javascript">
+ 	let positionName = "${position.positionName }";
+ 	let range = "${position.range }";
+	function goCategory(category){
+		if(category == "all"){
+			window.location.href = "http://li2453671898.yicp.io/C2CTest/GoodServlet?method=getGoods&positionName="+positionName+"&range="+range+"&page=1";
+		}else{
+			window.location.href = "http://li2453671898.yicp.io/C2CTest/GoodServlet?method=getGoods&positionName="+positionName+"&range="+range+"&category="+category+"&page=1";
+		}
+	}
+</script>
+
 </html>

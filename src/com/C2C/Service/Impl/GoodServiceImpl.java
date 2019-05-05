@@ -29,6 +29,10 @@ public class GoodServiceImpl implements GoodService {
 	public List<Good> getGoodsByPositionAndPage(String positionName, String range, int page, String category) throws IOException {
 		List<Good> goods = null;
 		
+		if(page <= 0) {
+			page = 1;
+		}
+		
 		//¼ìË÷»º´æ
 		String key = positionName + "_" + range;
 		if(category != null) {
